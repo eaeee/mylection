@@ -11,7 +11,7 @@ public class HelloController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-
+    	//Just test commit
         model.addAttribute("message", "Spring 3 MVC - Hello World!");
         return "index";
 
