@@ -14,6 +14,7 @@
 		<org.aspectj-version>1.8.1</org.aspectj-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<apache.tiles>3.0.3</apache.tiles>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -58,7 +59,20 @@
             <version>${org.springframework.security-version}</version>
         </dependency>
 		
-
+		<!-- Apache Tiles -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${apache.tiles}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>${apache.tiles}</version>
+		</dependency>
+		
+		
 		
 		<!-- Hibernate -->
 		<dependency>

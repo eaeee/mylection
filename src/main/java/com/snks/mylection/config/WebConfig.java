@@ -3,13 +3,13 @@ package com.snks.mylection.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.dao.LectionDAOImpl;
@@ -31,14 +31,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-    @Bean
+   @Bean
     public InternalResourceViewResolver setupViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
+        resolver.setOrder(1);
         return resolver;
     }
+    
     
     @Bean
     public UserDAO setupDAO() {
@@ -51,10 +53,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     	return new LectionDAOImpl();
     }
     
-    //для свойств
+
+	
 	@Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-       return new PropertySourcesPlaceholderConfigurer();
-    }
+	public TilesConfigurer tilesConfigurer() {
+		TilesConfigurer tilesConfigurer =  new TilesConfigurer();
+		return tilesConfigurer;
+		
+	}
+	
+	@Bean
+	public UrlBasedViewResolver viewResolver(){
+		UrlBasedViewResolver resolver = new UrlBasedViewResolver();	
+		resolver.setViewClass(org.springframework.web.servlet.view.tiles3.TilesView.class);
+		resolver.setOrder(0);
+		return resolver;
+	}
+	
+	
 
 }

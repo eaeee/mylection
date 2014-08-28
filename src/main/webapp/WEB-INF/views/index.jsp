@@ -5,28 +5,25 @@
 		<meta charset="utf-8">
 		<title>MyLections</title>
 
-	<link href="resources/css/bootstrap.css" rel="stylesheet">
-    <link href="resources/css/non-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" type="text/css" href="resources/css/lections.css"></link>
-    <link rel="stylesheet" href="resources/css/bootstrapValidator.min.css">
-    
-    
-    <script src="resources/js/jquery-1.11.1.min.js"></script>
-    <script src="resources/js/showdown.js"></script>
-    <script src="resources/js/jquery.hotkeys.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-	<script src="resources/js/bootstrapValidator.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script type="text/x-mathjax-config">
+		<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	    <script type="text/x-mathjax-config">
 		  MathJax.Hub.Config({
 		    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
 		  });
 		</script>
-
+		
+		<link href="resources/css/non-responsive.css" rel="stylesheet">
+	    <link href="resources/css/lections.css" rel="stylesheet">
+	
+		<script src="resources/js/showdown.js"></script>
 		<script src="resources/js/markdown.js"></script>
+	
 	</head>
 
 <body>
@@ -69,8 +66,7 @@
 									<div class="form-group">
 										<input type="text" class="form-control" name="email" placeholder="Email address" />
 									</div>									
-								</form>
-								</form>            
+								</form>           
 							</div>
 						</div>
 					</div>
