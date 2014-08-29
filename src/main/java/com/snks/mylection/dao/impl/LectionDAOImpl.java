@@ -1,14 +1,17 @@
-package com.snks.mylection.dao;
+package com.snks.mylection.dao.impl;
 
 import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.LectionDate;
 
+@Repository
 public class LectionDAOImpl implements LectionDAO{
     @Autowired
     private SessionFactory sessionFactory;

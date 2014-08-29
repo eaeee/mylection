@@ -12,9 +12,9 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.snks.mylection.dao.LectionDAO;
-import com.snks.mylection.dao.LectionDAOImpl;
 import com.snks.mylection.dao.UserDAO;
-import com.snks.mylection.dao.UserDAOImpl;
+import com.snks.mylection.dao.impl.LectionDAOImpl;
+import com.snks.mylection.dao.impl.UserDAOImpl;
 
 @Configuration
 @EnableWebMvc
@@ -40,21 +40,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setOrder(1);
         return resolver;
     }
-    
-    
-    @Bean
-    public UserDAO setupDAO() {
-		return new UserDAOImpl();
     	
-    }
-    
-    @Bean
-    public LectionDAO setupLectionDAO() {
-    	return new LectionDAOImpl();
-    }
-    
-
-	
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer =  new TilesConfigurer();

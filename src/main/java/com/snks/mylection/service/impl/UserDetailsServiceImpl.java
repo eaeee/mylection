@@ -1,19 +1,19 @@
-package com.snks.mylection.service;
+package com.snks.mylection.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.snks.mylection.dao.UserDAO;
-import com.snks.mylection.model.Role;
+
 import com.snks.mylection.model.User;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
