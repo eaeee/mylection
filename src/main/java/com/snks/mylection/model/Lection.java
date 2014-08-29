@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +24,9 @@ public class Lection {
 	@Embedded
 	private LectionDate lectionDate ;
 	
-	private int authorId;
+	@ManyToOne
+	@JoinColumn(name="AUTHOR_ID")
+	private User user;
 	
 	private int lastModifiedUserId;
 	
@@ -33,23 +36,35 @@ public class Lection {
 			inverseJoinColumns=@JoinColumn(name="COURSE_ID"))
 	private List<Course> courses = new ArrayList<Course>();
 	
+	
+	@Lob
+	private String lectionBody;
+	
+	@ManyToOne
+	@JoinColumn(name="LECTION_ID")
+	private Subject subject;
+	
+	
+	
+	
 	public List<Course> getCourses() {
 		return courses;
 	}
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
-	@Lob
-	private String lectionBody;
-	
-	
-	
-	
-	public int getAuthorId() {
-		return authorId;
+
+	public User getUser() {
+		return user;
 	}
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	public int getLastModifiedUserId() {
 		return lastModifiedUserId;

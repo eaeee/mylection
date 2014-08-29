@@ -1,8 +1,14 @@
 package com.snks.mylection.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,24 +16,47 @@ import javax.persistence.Table;
 public class Subject {
 	
 	@Id @GeneratedValue
-	private int SubjectId;
+	private int subjectId;
 	
-	private String SubjectName;
+	private String subjectName;
+	
+	@ManyToOne
+	@JoinColumn(name="SUBJECT_ID")
+	private SubjectClassification classification;
+	
+	public SubjectClassification getClassification() {
+		return classification;
+	}
+
+	public void setClassification(SubjectClassification classification) {
+		this.classification = classification;
+	}
+
+	public List<Lection> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Lection> subjects) {
+		this.subjects = subjects;
+	}
+
+	@OneToMany(mappedBy="subject")
+	private List<Lection> subjects = new ArrayList<Lection>();
 
 	public int getSubjectId() {
-		return SubjectId;
+		return subjectId;
 	}
 
 	public void setSubjectId(int subjectId) {
-		SubjectId = subjectId;
+		this.subjectId = subjectId;
 	}
 
 	public String getSubjectName() {
-		return SubjectName;
+		return subjectName;
 	}
 
 	public void setSubjectName(String subjectName) {
-		SubjectName = subjectName;
+		this.subjectName = subjectName;
 	}
 
 }

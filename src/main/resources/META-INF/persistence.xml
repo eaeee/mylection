@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="MyLection">
+		<class>com.snks.mylection.model.Lection</class>
+		<class>com.snks.mylection.model.Course</class>
+		<class>com.snks.mylection.model.Role</class>
+		<class>com.snks.mylection.model.Subject</class>
+		<class>com.snks.mylection.model.SubjectClassification</class>
+		<class>com.snks.mylection.model.LectionDate</class>
+		<class>com.snks.mylection.model.User</class>
+	</persistence-unit>
+</persistence>

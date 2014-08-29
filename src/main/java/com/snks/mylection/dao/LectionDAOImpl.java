@@ -23,7 +23,6 @@ public class LectionDAOImpl implements LectionDAO{
 		lDate.setAccessedDate(date);
 		lDate.setCreationDate(date);
 		lDate.setModifiedDate(date);
-		lection.setAuthorId(1);
 		lection.setLastModifiedUserId(1);
 		lection.setLectionDate(lDate);
 		lection.setLectionBody("Какой-то невероятно большой текст!!! Это тело лекции короче. Дефолтная лекция");

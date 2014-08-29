@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -23,11 +24,27 @@ public class User {
 	
 	@ManyToMany
 	@JoinTable(name="USERS_AND_ROLES",
-			joinColumns=@JoinColumn(name="user_id"),
-			inverseJoinColumns=@JoinColumn(name="role_id"))
+			joinColumns=@JoinColumn(name="USER_ID"),
+			inverseJoinColumns=@JoinColumn(name="ROLE_ID"))
 	private List<Role> roles = new ArrayList<Role>();
 	
 	
+	
+	
+	@OneToMany(mappedBy="user")
+	private List<Lection> lections = new ArrayList<Lection>();
+	
+	
+	
+	
+	
+	
+	public List<Lection> getLections() {
+		return lections;
+	}
+	public void setLections(List<Lection> lections) {
+		this.lections = lections;
+	}
 	public List<Role> getRoles() {
 		return roles;
 	}

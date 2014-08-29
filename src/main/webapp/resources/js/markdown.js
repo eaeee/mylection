@@ -25,7 +25,7 @@ $(document).ready(function() {
       $("#lection").empty();
       $("#lection").append(htmltext);
       UpdateMath($("#lection-markup").val());
-      alert("adfasd");
+      //alert("adfasd");
   }
   $(document).bind('keydown','enter',htmlConvert);
 
