@@ -13,9 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -25,8 +22,6 @@ public class HibernateConfigNew {
  
    @Autowired
    private Environment env;
-   @Autowired
-   SessionFactory sessionFactory;
  
    @Bean
    public LocalSessionFactoryBean sessionFactory() {

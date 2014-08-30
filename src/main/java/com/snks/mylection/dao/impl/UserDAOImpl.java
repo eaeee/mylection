@@ -32,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User findUserByName(String userName) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
-		criteria.add(Restrictions.eq("username", userName));		
+		criteria.add(Restrictions.eq("userName", userName));		
 		return (User) criteria.uniqueResult();
 		
 	}

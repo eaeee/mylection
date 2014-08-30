@@ -1,30 +1,22 @@
 package com.snks.mylection.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-        .inMemoryAuthentication()
-          .withUser("user")  // #1
-            .password("user")
-            .roles("USER")
-            .and()
-          .withUser("admin") // #2
-            .password("admin")
-            .roles("ADMIN","USER");
-    }
+
     
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -38,7 +30,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
         .authorizeRequests()
-        .antMatchers("/login","/about").permitAll() // #4
+        .antMatchers("/login","/register").permitAll() // #4
         .antMatchers("/users/**").hasRole("ADMIN") // #6
         .anyRequest().authenticated() // 7
         .and()
@@ -48,25 +40,26 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable();
     }
     
-    
-    /*
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-    		throws Exception {
-    	super.configure(auth);
-    	auth.authenticationProvider(authenticationProvider());
-    }
-    
     @Bean
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-    	 return new UserDetailsServiceImpl();
+    @Autowired
+    public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {   	
+    	DaoAuthenticationProvider dap =  new DaoAuthenticationProvider();
+    	dap.setUserDetailsService(userDetailsService); 
+    	return dap;
     }
     
-    @Bean 
-    public DaoAuthenticationProvider authenticationProvider() { 
-    	return new CustomDaoAuthenticationProvider(); 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth,DaoAuthenticationProvider authenticationProvider) throws Exception {
+        auth.authenticationProvider(authenticationProvider);
+/*        .inMemoryAuthentication()
+          .withUser("user")  // #1
+            .password("user")
+            .roles("USER")
+            .and()
+          .withUser("admin") // #2
+            .password("admin")
+            .roles("ADMIN","USER");*/
     }
-    */ 
+    
     
 }
