@@ -22,8 +22,8 @@
     </script>
     
   
+    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
     <script src="resources/js/showdown.js"></script>
-    <script src="resources/js/markdown.js"></script>
 </head>
 
 <body>
