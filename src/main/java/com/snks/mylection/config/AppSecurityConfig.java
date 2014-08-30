@@ -3,13 +3,14 @@ package com.snks.mylection.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Configuration
@@ -40,25 +41,15 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf().disable();
     }
     
-    @Bean
-    @Autowired
-    public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {   	
-    	DaoAuthenticationProvider dap =  new DaoAuthenticationProvider();
-    	dap.setUserDetailsService(userDetailsService); 
-    	return dap;
+    @Bean  
+    public BCryptPasswordEncoder passwordEncoder() throws Exception {  
+      return new BCryptPasswordEncoder();  
     }
     
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth,DaoAuthenticationProvider authenticationProvider) throws Exception {
-        auth.authenticationProvider(authenticationProvider);
-/*        .inMemoryAuthentication()
-          .withUser("user")  // #1
-            .password("user")
-            .roles("USER")
-            .and()
-          .withUser("admin") // #2
-            .password("admin")
-            .roles("ADMIN","USER");*/
+    public void configureGlobal(AuthenticationManagerBuilder auth,UserDetailsService userDetailsService) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
     }
     
     

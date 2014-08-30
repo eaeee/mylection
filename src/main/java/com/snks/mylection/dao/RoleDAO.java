@@ -1,0 +1,8 @@
+package com.snks.mylection.dao;
+
+import com.snks.mylection.model.Role;
+
+public interface RoleDAO {
+	void save(Role role);
+
+}

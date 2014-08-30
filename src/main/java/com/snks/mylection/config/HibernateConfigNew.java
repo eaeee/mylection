@@ -58,7 +58,7 @@ public class HibernateConfigNew {
 		{
             setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
             setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-            setProperty("hibernate.hbm2ddl.import_files", env.getProperty("hibernate.hbm2ddl.import_files"));
+           // setProperty("hibernate.hbm2ddl.import_files", env.getProperty("hibernate.hbm2ddl.import_files"));
             setProperty("hibernate.cache.provider_class", env.getProperty("hibernate.cache.provider_class"));
             setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
             setProperty("hibernate.globally_quoted_identifiers", "true");

@@ -5,6 +5,7 @@ package com.snks.mylection.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public void addDefaultUser() {
@@ -39,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
+		user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
 		userDAO.save(user);
 		
 	}
