@@ -11,10 +11,6 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import com.snks.mylection.dao.LectionDAO;
-import com.snks.mylection.dao.UserDAO;
-import com.snks.mylection.dao.impl.LectionDAOImpl;
-import com.snks.mylection.dao.impl.UserDAOImpl;
 
 @Configuration
 @EnableWebMvc
@@ -23,7 +19,6 @@ import com.snks.mylection.dao.impl.UserDAOImpl;
 				"com.snks.mylection.dao",
 				"com.snks.mylection.service"
 			   })
-//@Import({ AppSecurityConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

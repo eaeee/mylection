@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 
-@org.springframework.context.annotation.Configuration
+//@org.springframework.context.annotation.Configuration
 public class HibernateConfig {
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;
@@ -21,5 +21,10 @@ public class HibernateConfig {
 	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	    return sessionFactory;
 	}
-
+/*	
+	@Bean
+    public HibernateTransactionManager hibernateTransactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
+    }*/
+	
 }
