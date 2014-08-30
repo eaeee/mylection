@@ -7,4 +7,7 @@ public interface RoleDAO {
 
 	Role findByName(String string);
 
+	void init(Role roleUser);
+
+
 }

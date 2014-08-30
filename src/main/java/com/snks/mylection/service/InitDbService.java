@@ -7,36 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
+import com.snks.mylection.config.InitDbCondition;
 import com.snks.mylection.dao.RoleDAO;
-import com.snks.mylection.dao.UserDAO;
 import com.snks.mylection.model.Role;
 import com.snks.mylection.model.User;
 
-//@Service
-//@Transactional
+@Service
+@Transactional
+@Conditional(InitDbCondition.class)
 public class InitDbService {
-	
-	@Autowired
-	private UserDAO userDao;
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-	
-/*	@Autowired
-	private LectionDAO lectionDao;
-	
-	@Autowired
-	private SubjectClassificationDAO subjectClassificationDao;
-	
-	@Autowired
-	private SubjectDAO subjectDao;*/
 	
 	@Autowired
 	private RoleDAO roleDao;
 	
+	
+	@Autowired
+	private UserService userService; 
 	
 	
 	@PostConstruct
@@ -45,32 +34,30 @@ public class InitDbService {
 		Role roleUser = new Role();
 		roleAdmin.setRoleName("ROLE_ADMIN");
 		roleUser.setRoleName("ROLE_USER");
+		roleDao.init(roleUser);
+		roleDao.init(roleAdmin);
+		
 		
 		String adminPassword="admin";
-		adminPassword = passwordEncoder.encode(adminPassword);
 		String userPassword="user";
-		userPassword = passwordEncoder.encode(userPassword);
 		
 		
 		User userAdmin = new User();
-		User userUser = new User();
-		userAdmin.setUserPassword(adminPassword);
-		userUser.setUserPassword(userPassword);
 		userAdmin.setUserName("admin");
-		userUser.setUserName("user");
 		List<Role> adminRoles = new ArrayList<Role>();
 		adminRoles.add(roleAdmin);
 		userAdmin.setRoles(adminRoles);
+		userAdmin.setUserPassword(adminPassword);
+		
+		User userUser = new User();
+		userUser.setUserName("user");
 		List<Role> userRoles = new ArrayList<Role>();
 		userRoles.add(roleUser);
 		userUser.setRoles(userRoles);
-		
-		roleDao.save(roleUser);
-		roleDao.save(roleAdmin);
-		
-		userDao.save(userUser);
-		userDao.save(userAdmin);
-		
+		userUser.setUserPassword(userPassword);
+			
+		userService.save(userAdmin);
+		userService.save(userUser);
 	}
 	
 	
