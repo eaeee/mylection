@@ -1,11 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <html lang="en">
 <head>
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+<%@ include file="../layouts/taglib.jsp" %>
 
 
   <meta charset="UTF-8">
