@@ -8,5 +8,6 @@ public interface UserService {
 	void addDefaultUser();
 	List<User> findAll();
 	User findById(int id);
+	void save(User user);
 
 }

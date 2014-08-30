@@ -13,28 +13,34 @@ import com.snks.mylection.service.UserService;
 import com.snks.mylection.model.User;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
 
 	@Override
-	@Transactional
 	public void addDefaultUser() {
 		userDAO.addDefaultUser();
 
 	}
 	
-	@Transactional
 	public List<User> findAll() {
 		return userDAO.findAll();
 		
 	}
 	
-	@Transactional
+
 	@Override
 	public User findById(int id) {
 		return userDAO.findById(id);
+	}
+	
+
+	@Override
+	public void save(User user) {
+		userDAO.save(user);
+		
 	}
 
 }

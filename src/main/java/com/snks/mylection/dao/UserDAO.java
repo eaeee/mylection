@@ -10,5 +10,6 @@ public interface UserDAO {
 	User findUserByName(String userName);
 	List<User> findAll();
 	User findById(int id);
+	void save(User user);
 
 }

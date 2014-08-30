@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="USERS")
 public class User {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue
 	private int userId;
 	private String userName;
 	private String userPassword;
@@ -33,11 +33,6 @@ public class User {
 	
 	@OneToMany(mappedBy="author")
 	private List<Lection> lections = new ArrayList<Lection>();
-	
-	
-	
-	
-	
 	
 	public List<Lection> getLections() {
 		return lections;

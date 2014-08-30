@@ -50,4 +50,15 @@ public class UserDAOImpl implements UserDAO {
 		return (User) session.get(User.class,id);
 	}
 
+	@Override
+	public void save(User user) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.save(user);
+		System.out.println(user.getUserName()+"\n"+user.getUserPassword());
+		session.getTransaction().commit();
+		session.close();
+		
+	}
+
 }

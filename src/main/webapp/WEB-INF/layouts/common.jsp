@@ -44,8 +44,8 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="${current == 'index' ? 'active':''}"><a href='<spring:url value="/"/>'>Home</a></li>
-			  <li class="${current == 'login' ? 'active':''}"><a href='<spring:url value="/"/>'>Login</a></li>
-              <li class="${current == 'registration' ? 'active':''}"><a href='<spring:url value="/"/>'>Registration</a></li>
+			  <li class="${current == 'login' ? 'active':''}"><a href='<spring:url value="/login"/>'>Login</a></li>
+              <li class="${current == 'register' ? 'active':''}"><a href='<spring:url value="/register"/>'>Registration</a></li>
              <li class="${current == 'users' ? 'active':''}"><a href='<spring:url value="/users"/>'>Users</a></li>
             </ul>
           <form class="navbar-form navbar-right">
