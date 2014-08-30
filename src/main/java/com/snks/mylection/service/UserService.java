@@ -7,5 +7,6 @@ import com.snks.mylection.model.User;
 public interface UserService {
 	void addDefaultUser();
 	List<User> findAll();
+	User findById(int id);
 
 }

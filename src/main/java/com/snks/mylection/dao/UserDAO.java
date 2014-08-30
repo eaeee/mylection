@@ -9,5 +9,6 @@ public interface UserDAO {
 	void addDefaultUser();
 	User findUserByName(String userName);
 	List<User> findAll();
+	User findById(int id);
 
 }

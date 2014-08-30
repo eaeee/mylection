@@ -44,4 +44,10 @@ public class UserDAOImpl implements UserDAO {
 		return (List<User>)session.createQuery("from User").list();
 	}
 
+	@Override
+	public User findById(int id) {
+		Session session = sessionFactory.openSession();
+		return (User) session.get(User.class,id);
+	}
+
 }
