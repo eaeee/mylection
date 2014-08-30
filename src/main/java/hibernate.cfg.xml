@@ -28,6 +28,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">validate</property>
         <property name="hibernate.hbm2ddl.import_files">initial_data.sql</property>
+        <property name="hibernate.current_session_context_class">thread</property>
 
         <!-- Names the annotated entity class -->
         <mapping class="com.snks.mylection.model.User"/>

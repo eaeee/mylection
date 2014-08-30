@@ -1,5 +1,7 @@
 package com.snks.mylection.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,6 +35,13 @@ public class UserDAOImpl implements UserDAO {
 		criteria.add(Restrictions.eq("username", userName));		
 		return (User) criteria.uniqueResult();
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findAll() {
+		Session session = sessionFactory.openSession();
+		return (List<User>)session.createQuery("from User").list();
 	}
 
 }
