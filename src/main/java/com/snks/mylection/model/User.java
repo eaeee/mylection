@@ -31,7 +31,7 @@ public class User {
 	
 	
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="author")
 	private List<Lection> lections = new ArrayList<Lection>();
 	
 	

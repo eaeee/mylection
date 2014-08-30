@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.LectionDate;
+import com.snks.mylection.model.User;
 
 @Repository
 public class LectionDAOImpl implements LectionDAO{
@@ -27,6 +28,9 @@ public class LectionDAOImpl implements LectionDAO{
 		lDate.setCreationDate(date);
 		lDate.setModifiedDate(date);
 		lection.setLastModifiedUserId(1);
+		User user = new User();
+		user.setUserId(1);
+		lection.setAuthor(user);
 		lection.setLectionDate(lDate);
 		lection.setLectionBody("Какой-то невероятно большой текст!!! Это тело лекции короче. Дефолтная лекция");
 		
