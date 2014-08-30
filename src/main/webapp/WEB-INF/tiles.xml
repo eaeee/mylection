@@ -13,23 +13,27 @@
 	<definition name="index" extends="common">	
 		<put-attribute name="title" value="My lection" />
 		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+		<put-attribute name="current" value="index" />
 	</definition>
 	
 	<definition name="login" extends="common">	
 		<put-attribute name="title" value="My lection" />
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="current" value="login" />
 	</definition>
 	
 	
 	<definition name="welcomePage" extends="common">	
 		<put-attribute name="title" value="My lection" />
 		<put-attribute name="body" value="/WEB-INF/views/welcome.jsp" />
+		<put-attribute name="current" value="index" />
 	</definition>
 	
 	
 	<definition name="users" extends="common">	
 		<put-attribute name="title" value="Users" />
 		<put-attribute name="body" value="/WEB-INF/views/users.jsp" />
+		<put-attribute name="current" value="users" />
 	</definition>
 	 	 
 </tiles-definitions>

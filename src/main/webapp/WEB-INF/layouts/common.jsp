@@ -5,6 +5,8 @@
 <head>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+
 
   <meta charset="UTF-8">
   <title> <tiles:getAsString name="title"/></title>
@@ -27,6 +29,7 @@
 </head>
 
 <body>
+<tilesx:useAttribute name="current"/>
  <div class="container">
   <!-- Static navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -42,10 +45,10 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href='<spring:url value="/"/>'>Home</a></li>
-			  <li><a href='<spring:url value="/"/>'>Login</a></li>
-              <li><a href='<spring:url value="/"/>'>Registration</a></li>
-              <li><a href='<spring:url value="/users"/>'>Users</a></li>
+              <li class="${current == 'index' ? 'active':''}"><a href='<spring:url value="/"/>'>Home</a></li>
+			  <li class="${current == 'login' ? 'active':''}"><a href='<spring:url value="/"/>'>Login</a></li>
+              <li class="${current == 'registration' ? 'active':''}"><a href='<spring:url value="/"/>'>Registration</a></li>
+             <li class="${current == 'users' ? 'active':''}"><a href='<spring:url value="/users"/>'>Users</a></li>
             </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Поск по лекциям">
