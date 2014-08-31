@@ -37,19 +37,19 @@ public class InitDbService {
 		roleService.save(roleUser);
 		
 		
-		String adminPassword="admin";
-		String userPassword="user";
+		String adminPassword="adminadmin";
+		String userPassword="useruser";
 		
 		
 		User userAdmin = new User();
-		userAdmin.setUserName("admin");
+		userAdmin.setUserName("adminadmin");
 		List<Role> adminRoles = new ArrayList<Role>();
 		adminRoles.add(roleAdmin);
 		userAdmin.setRoles(adminRoles);
 		userAdmin.setUserPassword(adminPassword);
 		
 		User userUser = new User();
-		userUser.setUserName("user");
+		userUser.setUserName("useruser");
 		List<Role> userRoles = new ArrayList<Role>();
 		userRoles.add(roleUser);
 		userUser.setRoles(userRoles);

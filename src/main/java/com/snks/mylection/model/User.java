@@ -3,6 +3,7 @@ package com.snks.mylection.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import com.snks.mylection.annotation.UniqueUserName;
+
 
 @Entity
 @Table(name="USERS")
@@ -20,9 +23,12 @@ public class User {
 	@Id @GeneratedValue
 	private int userId;
 	
-	@Size(min =5,message="Name must be at least 5 characters!")
+	@Size(min=5,message="Name must be at least 5 characters!")
+	@Column(unique=true)
+	@UniqueUserName(message="This username is already exists!")
 	private String userName;
-	@Size(min =8,message="Name must be at least 8 characters!")
+	
+	@Size(min=8,message="Name must be at least 8 characters!")
 	private String userPassword;
 	
 	@ManyToMany

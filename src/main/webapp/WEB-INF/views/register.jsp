@@ -61,7 +61,7 @@
 					password_again: {
 						required : true,
 						minlength: 8,
-						equalTo: "#password"
+						equalTo: "#userPassword"
 					}
 				},
 			highlight: function(element){
