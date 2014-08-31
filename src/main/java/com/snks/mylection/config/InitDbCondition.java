@@ -9,7 +9,7 @@ public class InitDbCondition implements Condition {
 	public boolean matches(ConditionContext context,
 			AnnotatedTypeMetadata metadata) {
 		System.out.println(context.getEnvironment().toString());
-		return true;
+		return false;
 	}
 
 }
