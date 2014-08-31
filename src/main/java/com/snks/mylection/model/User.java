@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -18,7 +19,10 @@ import javax.persistence.Table;
 public class User {
 	@Id @GeneratedValue
 	private int userId;
+	
+	@Size(min =5,message="Name must be at least 5 characters!")
 	private String userName;
+	@Size(min =8,message="Name must be at least 8 characters!")
 	private String userPassword;
 	
 	@ManyToMany

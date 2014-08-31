@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="lections")
@@ -20,6 +21,9 @@ public class Lection {
 	
 	@Id @GeneratedValue
 	private int lectionId;
+	
+	@Size(min=5,message="The name of the lection must be at least 5 characters!")
+	private String lectionName;
 	
 	@Embedded
 	private LectionDate lectionDate ;
@@ -53,7 +57,6 @@ public class Lection {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
-
 
 	public User getAuthor() {
 		return author;
@@ -91,6 +94,10 @@ public class Lection {
 	public void setLectionBody(String lectionBody) {
 		this.lectionBody = lectionBody;
 	}
-
-	
+	public String getLectionName() {
+		return lectionName;
+	}
+	public void setLectionName(String lectionName) {
+		this.lectionName = lectionName;
+	}
 }

@@ -34,7 +34,7 @@
 				</td> 
 				<td>
 					<a href="<spring:url value="/users/${user.userId}"/>"> 
-						${user.userName}
+						<c:out value="${user.userName}"/>
 					</a> 
 				</td>
 				<td>

@@ -20,6 +20,7 @@
 		<label for="name" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-10">
 			<form:input path="userName" cssClass="form-control"/>
+			<form:errors path="userName"></form:errors>
 		</div>
 	</div>
 	<br>
@@ -27,6 +28,7 @@
 		<label for="password" class="col-sm-2 control-label">Password:</label>
 		<div class="col-sm-10">
 			<form:password path="userPassword" cssClass="form-control"/>
+			<form:errors path="userPassword"></form:errors>
 		</div>
 	</div>
 	<br>

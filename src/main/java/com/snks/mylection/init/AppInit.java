@@ -1,6 +1,8 @@
 package com.snks.mylection.init;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -34,5 +36,12 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
       characterEncodingFilter.setEncoding("UTF-8");
       return new Filter[] { characterEncodingFilter};
     }
-
+    
+    
+    @Override
+    public void onStartup(ServletContext servletContext)
+    		throws ServletException {
+    	servletContext.setInitParameter("defaultHtmlEscape", "true");
+    	super.onStartup(servletContext);
+    }
 }
