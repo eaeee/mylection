@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> 
 
 <%@ include file="../layouts/taglib.jsp" %>
-<link rel="stylesheet" href="resources/css/lection_blank.css">
+<%@ include file="../layouts/lection-resourses.jsp" %>
 <div class="row">
     <div class="col-lg-2 sidebar">
       <ul class="testtest">
@@ -18,9 +18,9 @@
       <li> Математический анализ</li>
       </ul>
     <div class="btn-group">
-      <button class="btn" id="changeButton">Преобразовать</button>
-      <button class="btn">Сохранить изменения</button>
-      <button class="btn btn-danger">Удалить</button>
+      <button class="btn" id="convertButton">Преобразовать</button>
+      <button class="btn" id="saveButton">Сохранить изменения</button>
+      <button class="btn btn-danger" id="deleteButton">Удалить</button>
     </div>
     </div>
 	  <div class="col-lg-10 main">
