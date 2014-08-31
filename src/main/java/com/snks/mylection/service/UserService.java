@@ -12,5 +12,6 @@ public interface UserService {
 	void saveAdmin(User user);
 	void saveUser(User user);
 	User findByName(String userName);
+	void delete(int id);
 
 }
