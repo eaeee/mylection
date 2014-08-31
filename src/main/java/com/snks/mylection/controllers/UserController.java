@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.snks.mylection.model.User;
 import com.snks.mylection.service.UserService;
@@ -73,6 +75,15 @@ public class UserController {
 	public String removeUser(@PathVariable int id) {
 		userServise.delete(id);
 		return "redirect:/users";
+		
+	}
+	
+	
+	@RequestMapping("/available")
+	@ResponseBody
+	public String available(@RequestParam String userName) {
+		Boolean available = (userServise.findByName(userName)==null);
+		return available.toString();
 		
 	}
 

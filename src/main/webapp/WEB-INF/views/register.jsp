@@ -52,7 +52,16 @@
 			rules: {
 					userName: {
 						required : true,
-						minlength: 5
+						minlength : 5,
+						remote : {
+							url : "<spring:url value='/available' />",
+							type: "get",
+							data : {
+								userName : function() {
+									return $("#userName").val();
+								}
+							}
+						}
 					},
 					userPassword: {
 						required : true,
@@ -69,7 +78,12 @@
 			},
 			unhighlight: function(element){
 				$(element).closest(".form-group").removeClass('has-error').addClass('has-success');
-			}			
+			},
+			messages: {
+					userName: {
+						remote: "This username already exists!"
+					}
+			}
 		});
 	});
 	</script>

@@ -25,7 +25,7 @@ public class User {
 	
 	@Size(min=5,message="Name must be at least 5 characters!")
 	@Column(unique=true)
-	@UniqueUserName(message="This username is already exists!")
+	@UniqueUserName(message="This username already exists!")
 	private String userName;
 	
 	@Size(min=8,message="Name must be at least 8 characters!")
