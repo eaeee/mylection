@@ -49,6 +49,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
+		userDAO.save(user);
+	}
+	
+	@Override
+	public void saveUser(User user) {
 		user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
 		
 		List<Role> userRoles = new ArrayList<Role>();
@@ -57,7 +62,18 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(userRoles);
 		
 		userDAO.save(user);
+	}
+	
+	@Override
+	public void saveAdmin(User user) {
+		user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
 		
+		List<Role> userRoles = new ArrayList<Role>();
+		userRoles.add(roleDao.findByName("ROLE_ADMIN"));
+		
+		user.setRoles(userRoles);
+		
+		userDAO.save(user);
 	}
 
 }

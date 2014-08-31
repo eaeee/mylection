@@ -3,6 +3,7 @@ package com.snks.mylection.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 
 @Configuration
+@PropertySource({ "classpath:hibernate-mysql.properties" })
 @EnableWebMvc
 @ComponentScan({"com.snks.mylection.config", 
 				"com.snks.mylection.controllers",
@@ -49,6 +51,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setViewClass(org.springframework.web.servlet.view.tiles3.TilesView.class);
 		resolver.setOrder(0);
 		return resolver;
+	}
+	
+	@Bean 
+	InitDbCondition initdbcondition() {
+		return new InitDbCondition();
 	}
 	
 	

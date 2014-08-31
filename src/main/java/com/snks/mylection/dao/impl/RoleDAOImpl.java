@@ -17,7 +17,6 @@ public class RoleDAOImpl implements RoleDAO {
 	@Override
 	public void save(Role role) {
 		sessionFactory.getCurrentSession().save(role);
-
 	}
 
 	@Override
@@ -27,9 +26,4 @@ public class RoleDAOImpl implements RoleDAO {
 		return (Role) criteria.uniqueResult();
 	}
 
-	@Override
-	public void init(Role role) {
-		sessionFactory.openSession().save(role);
-		
-	}
 }

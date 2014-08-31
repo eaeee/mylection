@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import com.snks.mylection.config.InitDbCondition;
-import com.snks.mylection.dao.RoleDAO;
 import com.snks.mylection.model.Role;
 import com.snks.mylection.model.User;
 
@@ -21,21 +20,21 @@ import com.snks.mylection.model.User;
 public class InitDbService {
 	
 	@Autowired
-	private RoleDAO roleDao;
-	
+	private RoleService roleService;
 	
 	@Autowired
 	private UserService userService; 
 	
 	
+
 	@PostConstruct
 	public void  init(){
 		Role roleAdmin = new Role();
 		Role roleUser = new Role();
 		roleAdmin.setRoleName("ROLE_ADMIN");
 		roleUser.setRoleName("ROLE_USER");
-		roleDao.init(roleUser);
-		roleDao.init(roleAdmin);
+		roleService.save(roleAdmin);
+		roleService.save(roleUser);
 		
 		
 		String adminPassword="admin";
@@ -56,8 +55,8 @@ public class InitDbService {
 		userUser.setRoles(userRoles);
 		userUser.setUserPassword(userPassword);
 			
-		userService.save(userAdmin);
-		userService.save(userUser);
+		userService.saveAdmin(userAdmin);
+		userService.saveUser(userUser);
 	}
 	
 	
