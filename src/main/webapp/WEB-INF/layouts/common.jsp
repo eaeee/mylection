@@ -58,6 +58,11 @@
               	 <li><a href='<spring:url value="/logout"/>'>Logout</a></li>
               
               </security:authorize>
+              
+             <security:authorize access="isAuthenticated()">
+              	 <li><a href='<spring:url value="/account"/>'>My account</a></li>
+              
+              </security:authorize>
             </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Поск по лекциям">
