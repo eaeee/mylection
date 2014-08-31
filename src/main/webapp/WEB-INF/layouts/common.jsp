@@ -23,10 +23,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
     <script src=" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
 </head>
-
 <body>
 <tilesx:useAttribute name="current"/>
- <div class="container">
+ <div class="container-fluid">
   <!-- Static navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -58,9 +57,13 @@
               </security:authorize>
               
              <security:authorize access="isAuthenticated()">
-              	 <li><a href='<spring:url value="/account"/>'>My account</a></li>
+              	 <li class="${current == 'account' ? 'active':''}"><a href='<spring:url value="/account"/>'>My account</a></li>
               
               </security:authorize>
+             <security:authorize access="isAuthenticated()">
+              	 <li><a href='<spring:url value="/addlection"/>'><span class="glyphicon glyphicon-plus"></span>create lection</a></li>
+              
+              </security:authorize>              
             </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Поск по лекциям">

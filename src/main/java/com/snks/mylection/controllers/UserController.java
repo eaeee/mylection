@@ -67,7 +67,7 @@ public class UserController {
 	public String account(Model model, Principal principal) {
 		String userName = principal.getName();
 		model.addAttribute("user",userServise.findByName(userName));
-		return "user";
+		return "account";
 		
 	}
 	
