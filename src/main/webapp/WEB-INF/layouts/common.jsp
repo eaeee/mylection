@@ -20,10 +20,8 @@
         tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
       });
     </script>
-    
-  
-    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-    <script src="resources/js/showdown.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+    <script src=" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
 </head>
 
 <body>

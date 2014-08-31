@@ -9,7 +9,7 @@
 <br>
 <br>
 
-<form:form commandName="user" cssClass="form-horisontal">
+<form:form commandName="user" cssClass="form-horisontal regForm">
 
 	<c:if test="${param.success eq true}">
 		
@@ -31,6 +31,12 @@
 			<form:errors path="userPassword"></form:errors>
 		</div>
 	</div>
+	<div class="form-group">
+		<label for="password" class="col-sm-2 control-label">Password again:</label>
+		<div class="col-sm-10">
+			<input type="password" name="password_again" id="password_again" class="form control">
+		</div>
+	</div>	
 	<br>
 	<div class="form-group">
 		<div class="col-sm-2">
@@ -39,3 +45,31 @@
 	</div>
 	<br>
 </form:form>
+
+	<script>
+	$(document).ready(function() {
+		$(".regForm").validate({
+			rules: {
+					userName: {
+						required : true,
+						minlength: 5
+					},
+					userPassword: {
+						required : true,
+						minlength: 8
+					},
+					password_again: {
+						required : true,
+						minlength: 8,
+						equalTo: "#password"
+					}
+				},
+			highlight: function(element){
+				$(element).closest(".form-group").removeClass('has-success').addClass('has-error');
+			},
+			unhighlight: function(element){
+				$(element).closest(".form-group").removeClass('has-error').addClass('has-success');
+			}			
+		});
+	});
+	</script>
