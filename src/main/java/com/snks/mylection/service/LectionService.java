@@ -17,4 +17,6 @@ public interface LectionService {
 
 	Lection findById(int id);
 
+	void updateFromJSON(LectionJSON lect, int id);
+
 }

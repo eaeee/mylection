@@ -71,4 +71,23 @@ public class LectionServiceImpl implements LectionService {
 	}
 
 
+	@Override
+	public void updateFromJSON(LectionJSON lect,int id) {
+		String userName = lect.lectionAuthor;
+		User user = userDao.findUserByName(userName);
+		Lection lection = new Lection();
+		lection.setAuthor(user);
+		lection.setLectionBody(lect.lectionBody);
+		lection.setLectionName(lect.lectionName);
+		LectionDate lectionDate = new LectionDate();
+		lectionDate.setCreationDate(new Date(lect.lectionCreationDate));
+		lectionDate.setAccessedDate(new Date(lect.lectionCreationDate));
+		lectionDate.setModifiedDate(new Date(lect.lectionCreationDate));
+		lection.setLectionDate(lectionDate);
+		lection.setLectionId(id);
+		lectionDao.update(lection);
+		
+	}
+
+
 }

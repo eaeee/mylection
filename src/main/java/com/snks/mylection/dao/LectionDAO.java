@@ -18,4 +18,6 @@ public interface LectionDAO {
 
 	Lection findByid(int id);
 
+	void update(Lection lection);
+
 }

@@ -28,7 +28,7 @@
       
       </ul>
     <div class="btn-group">
-      <button class="btn btn-primary" data-toggle="modal" data-target="#lectionMetaModal">редактировать</button>
+      <a href='<spring:url value="/lections/edit/${lection.getLectionId()}"/>'><button class="btn btn-primary" data-toggle="modal" >редактировать</button></a>
 
     	
     </div>

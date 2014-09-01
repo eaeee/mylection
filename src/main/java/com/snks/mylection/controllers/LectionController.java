@@ -39,12 +39,12 @@ public class LectionController {
 	private JsonFactory jsonFactory;
 	
 	@RequestMapping("/addlection")
-    public String login(Model model,Principal principal) {
+    public String add(Model model,Principal principal) {
 	   return "lection_blank";
     }
 	
 	
-	@RequestMapping(value="/addlection/save",method=RequestMethod.POST , consumes="application/json")
+	@RequestMapping(value="/lections/save",method=RequestMethod.POST , consumes="application/json")
     public void addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper objectMapper =  new ObjectMapper();
 		LectionJSON lect = objectMapper.readValue(lectionJSON, LectionJSON.class);
@@ -65,9 +65,26 @@ public class LectionController {
     }
 	
 	@RequestMapping(value="/lections/{id}")
-	public String getLection(@PathVariable int id,Model model) {
+	public String getLection(@PathVariable int id,Model model,Principal principal) {
 	   Lection lection = lectionService.findById(id);
 	   model.addAttribute("lection",lection);
 		return "lection_read";
     }
+	
+	
+	@RequestMapping("/lections/edit/{id}")
+    public String editLection(@PathVariable int id,Model model) {
+		Lection lection = lectionService.findById(id);
+		model.addAttribute("lection",lection);
+	   return "lection_edit";
+    }
+	
+	@RequestMapping(value= "/lections/update/{id}",method=RequestMethod.POST , consumes="application/json")
+    public void updateLection(@PathVariable int id,@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper objectMapper =  new ObjectMapper();
+		LectionJSON lect = objectMapper.readValue(lectionJSON, LectionJSON.class);
+		lectionService.updateFromJSON(lect,id);
+    }
+
+	
 }

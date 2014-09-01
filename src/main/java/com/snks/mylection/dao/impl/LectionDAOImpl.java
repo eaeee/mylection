@@ -52,6 +52,16 @@ public class LectionDAOImpl implements LectionDAO{
 		Session session = sessionFactory.openSession();
 		return (Lection) session.get(Lection.class,id);
 	}
+
+	@Override
+	public void update(Lection lection) {
+		Session session = sessionFactory.getCurrentSession();
+		Lection oldLection = (Lection) session.get(Lection.class,lection.getLectionId());
+		oldLection.setLectionBody(lection.getLectionBody());
+		oldLection.setLectionName(lection.getLectionName());
+		oldLection.setLectionDate(lection.getLectionDate());
+		sessionFactory.getCurrentSession().update(oldLection);
+	}
 	
 
 }
