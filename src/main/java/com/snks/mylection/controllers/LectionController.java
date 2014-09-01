@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,11 +25,14 @@ public class LectionController {
 	
 	@RequestMapping("/addlection")
     public String login(Model model,Principal principal) {
-		String userName = principal.getName();
-		System.out.println(userName);
-		System.out.println(principal.toString());
-		model.addAttribute("name",((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
 	   return "lection_blank";
+    }
+	
+	
+	@RequestMapping(value="/addlection/save",method=RequestMethod.POST)
+    public String addLection(@RequestBody String bodyContent) {
+		System.out.println(bodyContent);
+		return "lection_blank";
     }
 	
 	

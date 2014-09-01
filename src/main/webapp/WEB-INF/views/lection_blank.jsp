@@ -2,38 +2,35 @@
 
 <%@ include file="../layouts/taglib.jsp" %>
 <%@ include file="../layouts/lection-resourses.jsp" %>
+<%@page import="java.io.*, java.util.Date, java.util.Enumeration" %> 
 <div class="row">
     <div class="col-lg-2 sidebar">
       <ul class="lectionMeta">
       
       <li><b>Имя лекции</b></li>
-      <p id="#lectionName">Моя первая лекция</p>
+      <p id="lectionName"></p>
       
       <li> <b>Дата создания:</b></li>
-      <p id="#lectionCreationDate">11 мар 2014</p>
+      <p id="lectionCreationDate"><%=new Date()%></p>
       
       <li><b>Последнее изменение:</b></li>
-      <p id="#lectionModifiedDate">11 мар 2014</p>
+      <p id="lectionModifiedDate"></p>
       
       <li><b>Автор:</b></li>
-      <p id="#lectionAuthor"><security:authentication property="name" /> </p>
-       <li><b>Автор:</b></li>
-      <p id="#lectionAuthor">${name}</p>
+      <p id="lectionAuthor"><security:authentication property="name" /> </p>
       
       <li><b>Классификация:</b></li>
-      <p id="#lectionSubjectClassification">Математика</p>
+      <p id="lectionSubjectClassification">Математика</p>
       
       <li><b>Предмет:</b></li>
-      <p id="#lectionSubject">Математический анализ</p>
+      <p id="lectionSubject">Математический анализ</p>
       
       </ul>
     <div class="btn-group">
       <button class="btn" id="convertButton">Преобразовать</button>
-      <button class="btn" id="saveButton">Сохранить изменения</button>
-      <button class="btn btn-danger" id="deleteButton">Удалить</button>
-      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#lectionMetaModal">
-  		Изменить данные
-	</button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#lectionMetaModal">Изменить данные</button>
+      <button class="btn btn-danger" id="saveOnServerButton">Сохранить на сервере</button>
+    	
     </div>
     </div>
 	  <div class="col-lg-10 main">
@@ -66,14 +63,14 @@
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label"> Имя лекции:</label>
 				<div class="col-sm-10">
-					<input type="text" id="q">
+					<input type="text" id="lectionNameModal">
 				</div>
 			</div>          
       </div>
       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" id="saveLectionMetaButton" >Save changes</button>
       </div>
       
     </div>
@@ -83,5 +80,41 @@
 <script>
 	$(document).ready(function(){
 		$('#lectionMetaModal').modal('show');
+		
+		$("#saveLectionMetaButton" ).click(function() {
+			$('#lectionName').empty();
+			$('#lectionName').append($('#lectionNameModal').val());
+			$('#lectionMetaModal').modal('hide');
+		});
+		
+	    $("#saveOnServerButton").click(function() {
+	        sendLection();
+	      });
+	    function sendLection() {
+	    	console.log(getLectionJSON());
+	        $.ajax({
+	            contentType: 'application/json',
+	            data: getLectionJSON(),
+	            dataType: 'json',
+	            processData: false,
+	            type: 'POST',
+	            url: document.URL+'/save'
+	        });
+	      };
+	      
+	      function getLectionJSON() {	  
+	    	  var lection = {};
+	    	  lection.lectionName = $('#lectionName').html().toString();
+	    	  lection.lectionCreationDate =  $('#lectionCreationDate').html().toString();
+	    	  lection.lectionAuthor =  $('#lectionAuthor').html().toString();
+	    	  lection.lectionBody = $('#lection-markup').val();	 
+	    	  console.log(lection);
+	          var lectionJSON = JSON.stringify(lection);
+	          console.log(lectionJSON);
+	          
+	          return lectionJSON;
+	        };
+	    
 	});
 </script>
+
