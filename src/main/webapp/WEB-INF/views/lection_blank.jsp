@@ -2,7 +2,8 @@
 
 <%@ include file="../layouts/taglib.jsp" %>
 <%@ include file="../layouts/lection-resourses.jsp" %>
-<%@page import="java.io.*, java.util.Date, java.util.Enumeration" %> 
+<%@page import="java.io.*, java.util.Date, java.util.Enumeration,java.text.DateFormat, java.text.SimpleDateFormat" %> 
+<%DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");%>
 <div class="row">
     <div class="col-lg-2 sidebar">
       <ul class="lectionMeta">
@@ -11,7 +12,7 @@
       <p id="lectionName"></p>
       
       <li> <b>Дата создания:</b></li>
-      <p id="lectionCreationDate"><%=new Date()%></p>
+      <p id="lectionCreationDate"><%=new Date().getTime() %></p>
       
       <li><b>Последнее изменение:</b></li>
       <p id="lectionModifiedDate"></p>

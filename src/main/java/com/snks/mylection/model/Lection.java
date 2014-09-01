@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Table(name="lections")
 public class Lection {
@@ -39,7 +40,6 @@ public class Lection {
 			joinColumns=@JoinColumn(name="LECTIO_ID"),
 			inverseJoinColumns=@JoinColumn(name="COURSE_ID"))
 	private List<Course> courses = new ArrayList<Course>();
-	
 	
 	@Lob
 	private String lectionBody;

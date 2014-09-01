@@ -15,6 +15,7 @@
 		<org.slf4j-version>1.6.1</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<apache.tiles>3.0.3</apache.tiles>
+		<jackson.version>1.9.13</jackson.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -113,6 +114,31 @@
 			<artifactId>tomcat-dbcp</artifactId>
 			<version>8.0.11</version>
 		</dependency>
+		
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+ 			 <groupId>com.fasterxml.jackson.core</groupId>
+  			<artifactId>jackson-annotations</artifactId>
+  			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
+		</dependency>
+		
+		
 		
 				
 		<!-- AspectJ -->

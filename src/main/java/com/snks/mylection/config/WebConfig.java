@@ -12,6 +12,8 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import com.fasterxml.jackson.core.JsonFactory;
+
 
 @Configuration
 @PropertySource({ "classpath:hibernate-mysql.properties" })
@@ -56,6 +58,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean 
 	InitDbCondition initdbcondition() {
 		return new InitDbCondition();
+	}
+	
+	@Bean 
+	JsonFactory getJsonFactory(){
+		return new JsonFactory();
 	}
 	
 	
