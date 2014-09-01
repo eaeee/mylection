@@ -30,7 +30,7 @@ public class Lection {
 	
 	@ManyToOne
 	@JoinColumn(name="AUTHOR_ID")
-	private User author;
+	private User lectionAuthor;
 	
 	private int lastModifiedUserId;
 	
@@ -46,7 +46,7 @@ public class Lection {
 	
 	@ManyToOne
 	@JoinColumn(name="SUBJECT_ID")
-	private Subject subject;
+	private Subject lectionSubject;
 	
 	
 	
@@ -59,16 +59,16 @@ public class Lection {
 	}
 
 	public User getAuthor() {
-		return author;
+		return lectionAuthor;
 	}
 	public void setAuthor(User author) {
-		this.author = author;
+		this.lectionAuthor = author;
 	}
 	public Subject getSubject() {
-		return subject;
+		return lectionSubject;
 	}
 	public void setSubject(Subject subject) {
-		this.subject = subject;
+		this.lectionSubject = subject;
 	}
 	public int getLastModifiedUserId() {
 		return lastModifiedUserId;

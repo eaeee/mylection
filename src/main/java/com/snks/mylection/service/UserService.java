@@ -13,5 +13,6 @@ public interface UserService {
 	void saveUser(User user);
 	User findByName(String userName);
 	void delete(int id);
+	User findByNameWithLections(String userName);
 
 }

@@ -40,7 +40,7 @@ public class Subject {
 		this.subjects = subjects;
 	}
 
-	@OneToMany(mappedBy="subject")
+	@OneToMany(mappedBy="lectionSubject")
 	private List<Lection> subjects = new ArrayList<Lection>();
 
 	public int getSubjectId() {

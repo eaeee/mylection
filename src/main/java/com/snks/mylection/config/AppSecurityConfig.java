@@ -22,7 +22,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
       web
         .ignoring()
-           .antMatchers("/resources/**"); // #3
+           .antMatchers("/resources/**"); 
     }
 
     @Override
@@ -30,12 +30,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
         .authorizeRequests()
-        .antMatchers("/login","/register","/available").permitAll() // #4
+        .antMatchers("/login","/register","/available").permitAll() 
         .antMatchers("/users/**").hasRole("ADMIN")
-        .anyRequest().authenticated() // 7
+        .anyRequest().authenticated()
         .and()
-    .formLogin()  // #8
-        .loginPage("/login"); // #9
+    .formLogin()
+        .loginPage("/login");
         http
         .csrf().disable();
     }
@@ -45,10 +45,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
       return new BCryptPasswordEncoder();  
     }
     
+    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth,UserDetailsService userDetailsService) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
+ 
     }
     
     

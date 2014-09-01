@@ -7,13 +7,14 @@ import javax.servlet.ServletException;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.snks.mylection.config.AppSecurityConfig;
 import com.snks.mylection.config.WebConfig;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-        		 WebConfig.class
+        		WebConfig.class,AppSecurityConfig.class
         };
     }
 
@@ -36,7 +37,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
       characterEncodingFilter.setEncoding("UTF-8");
       return new Filter[] { characterEncodingFilter};
     }
-    
+  
     
     @Override
     public void onStartup(ServletContext servletContext)

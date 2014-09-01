@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.User;
 import com.snks.mylection.service.UserService;
 
@@ -32,8 +33,14 @@ public class UserController {
 	}
 	
 	@ModelAttribute("user")
-	public User construct() {
+	public User constructUser() {
 		return new User();
+		
+	}
+	
+	@ModelAttribute("lection")
+	public Lection constructLection() {
+		return new Lection();
 		
 	}
 	
@@ -44,6 +51,15 @@ public class UserController {
 		return "user";
 		
 	}
+	
+	@RequestMapping(value="/account")
+	public String account(Model model, Principal principal) {
+		String userName = principal.getName();
+		model.addAttribute("user",userServise.findByNameWithLections(userName));
+		return "account";
+		
+	}
+	
 	
 	
 	@RequestMapping("/register")
@@ -62,14 +78,6 @@ public class UserController {
 		
 	}
 	
-	
-	@RequestMapping(value="/account")
-	public String account(Model model, Principal principal) {
-		String userName = principal.getName();
-		model.addAttribute("user",userServise.findByName(userName));
-		return "account";
-		
-	}
 	
 	@RequestMapping(value="/users/remove/{id}")
 	public String removeUser(@PathVariable int id) {

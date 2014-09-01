@@ -4,23 +4,36 @@
 <%@ include file="../layouts/lection-resourses.jsp" %>
 <div class="row">
     <div class="col-lg-2 sidebar">
-      <ul class="testtest">
-      <li><h5>Имя лекции</h5></li>
-      <li> <b>Создано:</b></li>
-      <li>11 мар 2014</li>
+      <ul class="lectionMeta">
+      
+      <li><b>Имя лекции</b></li>
+      <p id="#lectionName">Моя первая лекция</p>
+      
+      <li> <b>Дата создания:</b></li>
+      <p id="#lectionCreationDate">11 мар 2014</p>
+      
       <li><b>Последнее изменение:</b></li>
-      <li>12 мар 2014</li>
+      <p id="#lectionModifiedDate">11 мар 2014</p>
+      
       <li><b>Автор:</b></li>
-      <li>Евстафьев Александр             sdfsdfs            sdfsdfs            sdfsdfs            sdfsdfs</li>
+      <p id="#lectionAuthor"><security:authentication property="name" /> </p>
+       <li><b>Автор:</b></li>
+      <p id="#lectionAuthor">${name}</p>
+      
       <li><b>Классификация:</b></li>
-      <li> Математика</li>
+      <p id="#lectionSubjectClassification">Математика</p>
+      
       <li><b>Предмет:</b></li>
-      <li> Математический анализ</li>
+      <p id="#lectionSubject">Математический анализ</p>
+      
       </ul>
     <div class="btn-group">
       <button class="btn" id="convertButton">Преобразовать</button>
       <button class="btn" id="saveButton">Сохранить изменения</button>
       <button class="btn btn-danger" id="deleteButton">Удалить</button>
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#lectionMetaModal">
+  		Изменить данные
+	</button>
     </div>
     </div>
 	  <div class="col-lg-10 main">
@@ -38,3 +51,37 @@
 	    </div>
 	  </div> 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="lectionMetaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      
+      <div class="modal-body">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label"> Имя лекции:</label>
+				<div class="col-sm-10">
+					<input type="text" id="q">
+				</div>
+			</div>          
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		$('#lectionMetaModal').modal('show');
+	});
+</script>

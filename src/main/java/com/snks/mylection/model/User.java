@@ -40,7 +40,7 @@ public class User {
 	
 	
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="lectionAuthor")
 	private List<Lection> lections = new ArrayList<Lection>();
 	
 	public List<Lection> getLections() {

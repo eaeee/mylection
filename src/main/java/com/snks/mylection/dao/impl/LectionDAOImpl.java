@@ -1,16 +1,17 @@
 package com.snks.mylection.dao.impl;
 
-import java.util.Date;
+import java.util.List;
 
-import org.hibernate.Session;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.model.Lection;
-import com.snks.mylection.model.LectionDate;
 import com.snks.mylection.model.User;
+
 
 @Repository
 public class LectionDAOImpl implements LectionDAO{
@@ -18,31 +19,17 @@ public class LectionDAOImpl implements LectionDAO{
     private SessionFactory sessionFactory;
 
 	@Override
-	public void addDefaultLection() {
+	public void save(Lection lection) {
+		sessionFactory.getCurrentSession().save(lection);
 		
-		//создание дефолтной лекции
-		Lection lection = new Lection();
-		Date date = new Date();
-		LectionDate lDate= new LectionDate();
-		lDate.setAccessedDate(date);
-		lDate.setCreationDate(date);
-		lDate.setModifiedDate(date);
-		lection.setLastModifiedUserId(1);
-		User user = new User();
-		user.setUserId(1);
-		lection.setAuthor(user);
-		lection.setLectionDate(lDate);
-		lection.setLectionBody("Какой-то невероятно большой текст!!! Это тело лекции короче. Дефолтная лекция");
-		
-		//запись ее в базу
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(lection);
-		session.getTransaction().commit();
-		session.close();
+	}
 
-		
-		
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Lection> findByUser(User user) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Lection.class);
+		criteria.add(Restrictions.eq("lectionAuthor", user));		
+		return (List<Lection>) criteria.list();
 	}
 	
 

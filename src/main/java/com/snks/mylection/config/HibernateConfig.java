@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class HibernateConfigNew {
+public class HibernateConfig {
  
    @Autowired
    private Environment env;

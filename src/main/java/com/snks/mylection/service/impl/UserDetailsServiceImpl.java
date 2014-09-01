@@ -26,25 +26,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException {
-		User user = userDao.findUserByName(userName); //our own User model class
-		
+		User user = userDao.findUserByName(userName);
 		if(user!=null){
+			String name = user.getUserName();
 			String password = user.getUserPassword();
-			//additional information on the security object
-/*			boolean enabled = user.getStatus().equals(UserStatus.ACTIVE);
-			boolean accountNonExpired = user.getStatus().equals(UserStatus.ACTIVE);
-			boolean credentialsNonExpired = user.getStatus().equals(UserStatus.ACTIVE);
-			boolean accountNonLocked = user.getStatus().equals(UserStatus.ACTIVE);*/
-/*			
-			*///Let's populate user roles
 			Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 			for(Role role : user.getRoles()){
 				authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
 			}
-			
-			//Now let's create Spring Security User object
 			org.springframework.security.core.userdetails.User securityUser = new 
-					org.springframework.security.core.userdetails.User(password, password, authorities);
+					org.springframework.security.core.userdetails.User(name, password, authorities);
 			return securityUser;
 		}else{
 			throw new UsernameNotFoundException("User Not Found!!!");

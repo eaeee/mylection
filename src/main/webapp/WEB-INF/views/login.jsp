@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../layouts/taglib.jsp" %>
 <style>
 body {
   padding-top: 40px;
@@ -43,9 +44,17 @@ body {
 </style>
 
 
-<form class="form-signin" role="form" name='f' action='/mylection/login' method='POST'>
+<!-- <form class="form-signin" role="form" name='f' th:action="@{/login}" method='POST'>
   <h2 class="form-signin-heading">Please sign in</h2>
-  <input type="text" class="form-control" placeholder="Email address" name='username' required autofocus>
-  <input type="password" class="form-control" placeholder="Password" name='password' required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <input type="text" class="form-control" placeholder="username" id="username" name="username" required autofocus>
+  <input type="password" class="form-control" placeholder="Password" name='password' id="password" required>
+  <button class="btn btn-lg btn-primary btn-block form-actions" type="submit">Sign in</button>
+</form> -->
+
+
+<form class="form-signin" role="form" action="<spring:url value="/login" />" method="POST">
+	<h2 class="form-signin-heading">Please sign in</h2>
+	<input type="text" name="username" class="form-control" placeholder="Name" required autofocus> 
+	<input type="password" name="password" class="form-control" placeholder="Password" required> 
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>

@@ -34,7 +34,7 @@
 	<div class="form-group">
 		<label for="password" class="col-sm-2 control-label">Password again:</label>
 		<div class="col-sm-10">
-			<input type="password" name="password_again" id="password_again" class="form control">
+			<input type="password" name="password_again" id="password_again" class="form-control">
 		</div>
 	</div>	
 	<br>

@@ -10,9 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.dao.RoleDAO;
 import com.snks.mylection.dao.UserDAO;
 import com.snks.mylection.service.UserService;
+import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.Role;
 import com.snks.mylection.model.User;
 
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RoleDAO roleDao;
+	
+	@Autowired
+	private LectionDAO lectionDAO;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -85,6 +90,14 @@ public class UserServiceImpl implements UserService {
 	public void delete(int id) {
 		userDAO.delete(id);
 		
+	}
+
+	@Override
+	public User findByNameWithLections(String userName) {
+		User user = findByName(userName);
+		List<Lection> lections = lectionDAO.findByUser(user);
+		user.setLections(lections);
+		return user;
 	}
 
 }
