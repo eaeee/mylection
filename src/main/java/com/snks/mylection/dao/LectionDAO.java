@@ -20,4 +20,6 @@ public interface LectionDAO {
 
 	void update(Lection lection);
 
+	void delete(Lection lection);
+
 }

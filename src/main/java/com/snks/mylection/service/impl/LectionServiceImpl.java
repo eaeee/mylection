@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,6 +88,13 @@ public class LectionServiceImpl implements LectionService {
 		lection.setLectionDate(lectionDate);
 		lection.setLectionId(id);
 		lectionDao.update(lection);
+		
+	}
+
+	@PreAuthorize("#lection.getAuthor().getUserName() == authentication.name or hasRole('ROLE_ADMIN')")
+	@Override
+	public void delete(@P("lection")Lection lection) {
+		lectionDao.delete(lection);
 		
 	}
 

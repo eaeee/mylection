@@ -19,4 +19,6 @@ public interface LectionService {
 
 	void updateFromJSON(LectionJSON lect, int id);
 
+	void delete(Lection lection);
+
 }

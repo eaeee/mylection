@@ -49,7 +49,7 @@ public class LectionDAOImpl implements LectionDAO{
 
 	@Override
 	public Lection findByid(int id) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		return (Lection) session.get(Lection.class,id);
 	}
 
@@ -61,6 +61,13 @@ public class LectionDAOImpl implements LectionDAO{
 		oldLection.setLectionName(lection.getLectionName());
 		oldLection.setLectionDate(lection.getLectionDate());
 		sessionFactory.getCurrentSession().update(oldLection);
+	}
+
+	
+	@Override
+	public void delete(Lection lection) {
+		sessionFactory.getCurrentSession().delete(lection);
+		
 	}
 	
 

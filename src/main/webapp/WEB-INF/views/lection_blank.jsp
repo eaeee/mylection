@@ -91,6 +91,9 @@
 	    $("#saveOnServerButton").click(function() {
 	        sendLection();
 	      });
+	    
+	    var saveURL = '<spring:url value="/lections/save"/>'; 
+	    
 	    function sendLection() {
 	    	console.log(getLectionJSON());
 	        $.ajax({
@@ -99,7 +102,7 @@
 	            dataType: 'json',
 	            processData: false,
 	            type: 'POST',
-	            url: document.URL+'/save'
+	            url: saveURL
 	        });
 	      };
 	      

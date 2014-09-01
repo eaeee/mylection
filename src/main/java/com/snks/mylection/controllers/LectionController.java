@@ -43,7 +43,6 @@ public class LectionController {
 	   return "lection_blank";
     }
 	
-	
 	@RequestMapping(value="/lections/save",method=RequestMethod.POST , consumes="application/json")
     public void addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper objectMapper =  new ObjectMapper();
@@ -53,7 +52,8 @@ public class LectionController {
 	
 	@RequestMapping(value="/lections/remove/{id}")
 	public String removeLection(@PathVariable int id) {
-		lectionService.delete(id);
+		Lection lection = lectionService.findById(id);
+		lectionService.delete(lection);
 		return "redirect:/";
     }
 	
@@ -70,7 +70,6 @@ public class LectionController {
 	   model.addAttribute("lection",lection);
 		return "lection_read";
     }
-	
 	
 	@RequestMapping("/lections/edit/{id}")
     public String editLection(@PathVariable int id,Model model) {
