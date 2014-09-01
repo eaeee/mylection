@@ -15,4 +15,6 @@ public interface LectionService {
 
 	List<Lection> findAll();
 
+	Lection findById(int id);
+
 }

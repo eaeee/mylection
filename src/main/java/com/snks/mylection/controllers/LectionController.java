@@ -64,4 +64,10 @@ public class LectionController {
 		return "all_lections";
     }
 	
+	@RequestMapping(value="/lections/{id}")
+	public String getLection(@PathVariable int id,Model model) {
+	   Lection lection = lectionService.findById(id);
+	   model.addAttribute("lection",lection);
+		return "lection_read";
+    }
 }

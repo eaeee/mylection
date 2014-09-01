@@ -68,5 +68,13 @@
 		<put-attribute name="current" value="all_lections" />
 	</definition>
 	
+	
+	
+	<definition name="lection_read" extends="common">	
+		<put-attribute name="title" value="New lection" />
+		<put-attribute name="body" value="/WEB-INF/views/lection_read.jsp" />
+		<put-attribute name="current" value="lection_read" />
+	</definition>
+	
 	 	 
 </tiles-definitions>

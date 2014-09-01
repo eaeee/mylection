@@ -16,4 +16,6 @@ public interface LectionDAO {
 
 	List<Lection> findAll();
 
+	Lection findByid(int id);
+
 }

@@ -65,4 +65,10 @@ public class LectionServiceImpl implements LectionService {
 	}
 
 
+	@Override
+	public Lection findById(int id) {
+		return lectionDao.findByid(id);
+	}
+
+
 }

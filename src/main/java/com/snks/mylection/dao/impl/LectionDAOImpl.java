@@ -46,6 +46,12 @@ public class LectionDAOImpl implements LectionDAO{
 		Session session = sessionFactory.getCurrentSession();
 		return (List<Lection>)session.createQuery("from Lection").list();
 	}
+
+	@Override
+	public Lection findByid(int id) {
+		Session session = sessionFactory.openSession();
+		return (Lection) session.get(Lection.class,id);
+	}
 	
 
 }
