@@ -12,4 +12,8 @@ public interface LectionDAO {
 
 	List<Lection> findByUser(User user);
 
+	void delete(int id);
+
+	List<Lection> findAll();
+
 }

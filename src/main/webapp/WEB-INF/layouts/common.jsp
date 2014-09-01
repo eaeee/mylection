@@ -53,6 +53,12 @@
               	 <li class="${current == 'account' ? 'active':''}"><a href='<spring:url value="/account"/>'>My account</a></li>
               
               </security:authorize>
+              
+             <security:authorize access="hasRole('ROLE_ADMIN')">
+              	 <li class="${current == 'all_lections' ? 'active':''}"><a href='<spring:url value="/all_lections"/>'>All lections</a></li>
+              
+              </security:authorize>
+              
              <security:authorize access="isAuthenticated()">
               	 <li><a href='<spring:url value="/addlection"/>'><span class="glyphicon glyphicon-plus"></span>create lection</a></li>
               

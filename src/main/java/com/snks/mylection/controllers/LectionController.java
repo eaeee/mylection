@@ -3,13 +3,17 @@ package com.snks.mylection.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+
 
 
 
@@ -47,15 +51,17 @@ public class LectionController {
 		lectionService.saveFromJSON(lect);
     }
 	
+	@RequestMapping(value="/lections/remove/{id}")
+	public String removeLection(@PathVariable int id) {
+		lectionService.delete(id);
+		return "redirect:/";
+    }
 	
+	@RequestMapping(value="/all_lections")
+	public String getAllLections(Model model) {
+		List<Lection> lections = lectionService.findAll();
+		model.addAttribute("lections",lections);
+		return "all_lections";
+    }
 	
-/*	
-	@RequestMapping(value="/addlection", method=RequestMethod.POST)
-	public String doAddLection(@ModelAttribute("lection") Lection lection,Principal principal) {
-		String name = principal.getName();
-		lectionService.save(lection, name);
-		return "redirect:/addlection";
-		
-	}
-	*/
 }

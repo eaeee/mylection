@@ -60,5 +60,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/lection_blank.jsp" />
 		<put-attribute name="current" value="lection_blank" />
 	</definition>
+	
+	
+	<definition name="all_lections" extends="common">	
+		<put-attribute name="title" value="All lections" />
+		<put-attribute name="body" value="/WEB-INF/views/all_lections.jsp" />
+		<put-attribute name="current" value="all_lections" />
+	</definition>
+	
 	 	 
 </tiles-definitions>

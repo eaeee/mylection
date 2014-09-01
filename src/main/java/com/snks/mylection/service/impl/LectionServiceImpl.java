@@ -1,6 +1,7 @@
 package com.snks.mylection.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,20 @@ public class LectionServiceImpl implements LectionService {
 		lection.setLectionDate(lectionDate);	
 		lectionDao.save(lection);
 		
+	}
+
+
+	@Override
+	public void delete(int id) {
+		lectionDao.delete(id);
+		
+	}
+
+
+	@Override
+	public List<Lection> findAll() {
+		List<Lection> lections = lectionDao.findAll();
+		return lections;
 	}
 
 

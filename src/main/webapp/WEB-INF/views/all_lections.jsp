@@ -19,7 +19,7 @@
 <br>
 <br>
 
-<h1>${user.userName}</h1>
+
 
 
 <table class="table table-bordered table-hover table-striped">
@@ -33,7 +33,7 @@
 	</thead>
 	
 	<tbody>
-		<c:forEach items="${user.lections}"  var="lection">
+		<c:forEach items="${lections}"  var="lection">
 			<tr>
 			  	<td>
 					${lection.lectionId}
