@@ -17,17 +17,6 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-	@Override
-	public void addDefaultUser() {
-		User user = new User();
-		user.setUserName("Third User");
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(user);
-		session.getTransaction().commit();
-		session.close();
-
-	}
 
 	@Override
 	public User findUserByName(String userName) {

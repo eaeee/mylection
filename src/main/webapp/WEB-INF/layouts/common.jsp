@@ -17,7 +17,24 @@
     <script src=" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
     <script src="http://cdn.jsdelivr.net/filesaver.js/0.2/FileSaver.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.js"></script>
-    
+    <% 
+	    String down="<span class='glyphicon glyphicon-arrow-down'></span>";  				
+		String ic="<span class='glyphicon glyphicon-user'></span>";
+		String ic_auth = "<span class='glyphicon glyphicon-log-in'></span>"; 
+		String ic_home = "<span class='glyphicon glyphicon-home'></span>";
+		String ic_reg = "<span class='glyphicon glyphicon-registration-mark'></span>";
+		String ic_search="<span class='glyphicon glyphicon-search'></span>";
+		String ic_dwnld="<span class='glyphicon glyphicon-download'></span>";
+		String ic_warn="<span class='glyphicon glyphicon-warning-sign'></span>";
+	%>
+	<security:authorize access="isAuthenticated()">
+		<% ic_auth = "<span class='glyphicon glyphicon-log-out'></span>";%>
+	</security:authorize> 
+	
+	<security:authorize access="hasRole('ROLE_ADMIN')">
+		 <%	ic="<span class='glyphicon glyphicon-star'></span>";%>
+	</security:authorize>  
+	
 </head>
 <body>
 <tilesx:useAttribute name="current"/>
@@ -36,39 +53,43 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="${current == 'index' ? 'active':''}"><a href='<spring:url value="/"/>'>Home</a></li>
-              <li class="${current == 'register' ? 'active':''}"><a href='<spring:url value="/register"/>'>Registration</a></li>
+              <li class="${current == 'index' ? 'active':''}"><a href='<spring:url value="/"/>'><%=ic_home%> Home</a></li>
               
-              <security:authorize access="hasRole('ROLE_ADMIN')">
-              	<li class="${current == 'users' ? 'active':''}"><a href='<spring:url value="/users"/>'>Users</a></li>
-              </security:authorize>
-              
+              <li class="${current == 'register' ? 'active':''}"><a href='<spring:url value="/register"/>'><%=ic_reg%> Registration</a></li>
+                            
               <security:authorize access="! isAuthenticated()">
-              	<li class="${current == 'login' ? 'active':''}"><a href='<spring:url value="/login"/>'>Login</a></li>
+              	<li class="${current == 'login' ? 'active':''}"><a href='<spring:url value="/login"/>'><%=ic_auth%> Login</a></li>
               </security:authorize>
               
               <security:authorize access="isAuthenticated()">
-              	 <li><a href='<spring:url value="/logout"/>'>Logout</a></li>
+              	 <li><a href='<spring:url value="/logout"/>'><%=ic_auth %> Logout</a></li>
               
               </security:authorize>
               
              <security:authorize access="isAuthenticated()">
-              	 <li class="${current == 'account' ? 'active':''}"><a href='<spring:url value="/account"/>'>My account</a></li>
-              
+              	 <li class="${current == 'account' ? 'active':''}"><a href='<spring:url value="/account"/>'><%=ic%> My account</a></li>              
               </security:authorize>
+              <security:authorize access="isAuthenticated()">
+              	 <li><a href='<spring:url value="/addlection"/>'><span class="glyphicon glyphicon-plus"></span> Create lection</a></li>
+              
+              </security:authorize>  
               
              <security:authorize access="hasRole('ROLE_ADMIN')">
-              	 <li class="${current == 'all_lections' ? 'active':''}"><a href='<spring:url value="/all_lections"/>'>All lections</a></li>
-              
-              </security:authorize>
-              
-             <security:authorize access="isAuthenticated()">
-              	 <li><a href='<spring:url value="/addlection"/>'><span class="glyphicon glyphicon-plus"></span>create lection</a></li>
-              
-              </security:authorize>              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=ic_warn%> For admin<span class="caret"></span></a>
+                <ul class="dropdown-menu ${current == 'users'||'all_lections'||'subjects' ? 'active':''}" role="menu">
+					<li class="${current == 'users' ? 'active':''}"><a href='<spring:url value="/users"/>'> <%=down%> All Users</a></li>
+	              	<li class="${current == 'all_lections' ? 'active':''}"><a href='<spring:url value="/all_lections"/>'><%=down%>All lections</a></li>
+	              	<li class="${current == 'subjects' ? 'active':''}"><a href='<spring:url value="/subjects"/>'><%=down%> All subjects</a></li>
+	              	<li class="${current == 'subjects' ? 'active':''}"><a href='<spring:url value="/classifications"/>'><%=down%> All classification</a></li>
+                </ul>
+              </li>
+            </security:authorize>
+            
             </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Поск по лекциям">
+            <%=ic_search %>
           </form>
             
             <ul class="nav navbar-nav navbar-right">
@@ -78,7 +99,7 @@
             			  (current =='lection_read')
             }">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Скачать в различных форматах <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=ic_dwnld%>Скачать<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li id="pdf"><a href="#">PDF</a></li>
                   <li id="html"><a href="#">HTML</a></li>
@@ -92,6 +113,19 @@
 			    			console.log("test2");
 			    			var blob = new Blob([$("#lection-markup").val()], {type: "text/plain;charset=utf-8"});
 			    			saveAs(blob, "Моя лекция.txt");
+			    			var doc = new jsPDF();
+			    			
+			    			// We'll make our own renderer to skip this editor
+			    			var specialElementHandlers = {
+			    				'#something': function(element, renderer){
+			    					return true;
+			    				}
+			    			};
+			    			doc.fromHTML($("#lection").html(), 15, 15, {
+			    				'width': 170, 
+			    				'elementHandlers': specialElementHandlers
+			    			});
+			    			doc.save("Еще одна моя лекция");
 			    		});
 				});
     		</script>

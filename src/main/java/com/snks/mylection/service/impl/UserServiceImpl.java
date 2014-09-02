@@ -33,12 +33,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
-	@Override
-	public void addDefaultUser() {
-		userDAO.addDefaultUser();
-
-	}
 	
 	public List<User> findAll() {
 		return userDAO.findAll();

@@ -83,5 +83,17 @@
 		<put-attribute name="current" value="lection_edit" />
 	</definition>
 	
+	
+	<definition name="subjects" extends="common">	
+		<put-attribute name="title" value="New lection" />
+		<put-attribute name="body" value="/WEB-INF/views/subjects.jsp" />
+		<put-attribute name="current" value="subjects" />
+	</definition>
+	
+	<definition name="classifications" extends="common">	
+		<put-attribute name="title" value="New lection" />
+		<put-attribute name="body" value="/WEB-INF/views/classifications.jsp" />
+		<put-attribute name="current" value="classifications" />
+	</definition>
 	 	 
 </tiles-definitions>
