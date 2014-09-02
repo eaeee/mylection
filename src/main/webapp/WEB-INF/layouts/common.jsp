@@ -15,6 +15,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
     <script src=" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/filesaver.js/0.2/FileSaver.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.js"></script>
+    
 </head>
 <body>
 <tilesx:useAttribute name="current"/>
@@ -69,15 +72,32 @@
           </form>
             
             <ul class="nav navbar-nav navbar-right">
+            <c:if test="${
+            			  (current == 'lection_blank')||
+            			  (current =='lection_edit')||
+            			  (current =='lection_read')
+            }">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Скачать в различных форматах <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">PDF</a></li>
-                  <li><a href="#">HTML</a></li>
-                  <li><a href="#">TXT</a></li>
-                  <li><a href="#">MARKDOWN</a></li>
+                  <li id="pdf"><a href="#">PDF</a></li>
+                  <li id="html"><a href="#">HTML</a></li>
+                  <li id="txt"><a href="#">TXT</a></li>
                 </ul>
               </li>
+		    <script>
+			    console.log("test1");
+				$(document).ready(function() {
+			    		$("#html").click(function() { 
+			    			console.log("test2");
+			    			var blob = new Blob([$("#lection-markup").val()], {type: "text/plain;charset=utf-8"});
+			    			saveAs(blob, "Моя лекция.txt");
+			    		});
+				});
+    		</script>
+            
+            </c:if>
+              
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
