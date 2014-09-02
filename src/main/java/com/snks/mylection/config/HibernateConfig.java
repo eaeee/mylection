@@ -27,7 +27,6 @@ public class HibernateConfig {
       sessionFactory.setDataSource(restDataSource());
       sessionFactory.setPackagesToScan(new String[] { "com.snks.mylection.model" });
       sessionFactory.setHibernateProperties(hibernateProperties());
- 
       return sessionFactory;
    }
  
@@ -59,6 +58,7 @@ public class HibernateConfig {
             setProperty("hibernate.cache.provider_class", env.getProperty("hibernate.cache.provider_class"));
             setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
             setProperty("hibernate.globally_quoted_identifiers", "true");
+            setProperty("current_session_context_class","thread");
          }
       };
    }

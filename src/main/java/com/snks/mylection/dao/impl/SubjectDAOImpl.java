@@ -23,7 +23,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Subject> findAll() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		return (List<Subject>)session.createQuery("from Subject").list();
 	}
 

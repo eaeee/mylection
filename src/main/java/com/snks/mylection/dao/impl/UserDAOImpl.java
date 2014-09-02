@@ -29,13 +29,13 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		return (List<User>)session.createQuery("from User").list();
 	}
 
 	@Override
 	public User findById(int id) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		return (User) session.get(User.class,id);
 	}
 

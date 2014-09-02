@@ -81,7 +81,7 @@
 					<li class="${current == 'users' ? 'active':''}"><a href='<spring:url value="/users"/>'> <%=down%> All Users</a></li>
 	              	<li class="${current == 'all_lections' ? 'active':''}"><a href='<spring:url value="/all_lections"/>'><%=down%>All lections</a></li>
 	              	<li class="${current == 'subjects' ? 'active':''}"><a href='<spring:url value="/subjects"/>'><%=down%> All subjects</a></li>
-	              	<li class="${current == 'subjects' ? 'active':''}"><a href='<spring:url value="/classifications"/>'><%=down%> All classification</a></li>
+	              	<li class="${current == 'classifications' ? 'active':''}"><a href='<spring:url value="/classifications"/>'><%=down%> All classification</a></li>
                 </ul>
               </li>
             </security:authorize>

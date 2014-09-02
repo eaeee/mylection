@@ -23,7 +23,7 @@ public class SubjectClassificationDAOImpl implements SubjectClassificationDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<SubjectClassification> findAll() {
-      Session session = sessionFactory.openSession();
+      Session session = sessionFactory.getCurrentSession();
       return (List<SubjectClassification>)session.createQuery("from SubjectClassification").list();
     }
 
