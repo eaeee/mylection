@@ -10,4 +10,6 @@ public interface SubjectDAO {
 
 	List<Subject> findAll();
 
+	void delete(int id);
+
 }

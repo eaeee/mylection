@@ -29,4 +29,10 @@ public class SubjectClassificationServiceImpl implements SubjectClassificationSe
 		
 	}
 
+	@Override
+	public void delete(int id) {
+		subjectClassificationDao.delete(id);
+		
+	}
+
 }

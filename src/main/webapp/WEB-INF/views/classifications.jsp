@@ -36,7 +36,7 @@
 						${classification.subjectClassificationName}
 				</td>
 				<td>
-					<a href="<spring:url value="/users/remove/${classification.subjectClassificationId}"/>" class="btn btn-danger triggerRemove"> 
+					<a href="<spring:url value="/classifications/remove/${classification.subjectClassificationId}"/>" class="btn btn-danger triggerRemove"> 
 						remove
 					</a> 
 				</td>				

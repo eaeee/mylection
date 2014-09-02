@@ -28,4 +28,10 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectDao.findAll();
 	}
 
+	@Override
+	public void delete(int id) {
+		subjectDao.delete(id);
+		
+	}
+
 }

@@ -27,4 +27,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 		return (List<Subject>)session.createQuery("from Subject").list();
 	}
 
+	@Override
+	  public void delete(int id) {
+	    Subject subject = (Subject) sessionFactory.getCurrentSession().get(Subject.class, id);
+	    sessionFactory.getCurrentSession().delete(subject);
+	    
+	  }
 }

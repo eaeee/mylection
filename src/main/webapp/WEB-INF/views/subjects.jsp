@@ -36,7 +36,7 @@
 						${subject.subjectName}
 				</td>
 				<td>
-					<a href="<spring:url value="/users/remove/${subject.subjectId}"/>" class="btn btn-danger triggerRemove"> 
+					<a href="<spring:url value="/subjects/remove/${subject.subjectId}"/>" class="btn btn-danger triggerRemove"> 
 						remove
 					</a> 
 				</td>				

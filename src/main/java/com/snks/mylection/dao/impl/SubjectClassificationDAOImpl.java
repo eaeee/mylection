@@ -27,4 +27,10 @@ public class SubjectClassificationDAOImpl implements SubjectClassificationDAO {
       return (List<SubjectClassification>)session.createQuery("from SubjectClassification").list();
     }
 
+    @Override
+    public void delete(int id) {
+      SubjectClassification classification = (SubjectClassification) sessionFactory.getCurrentSession().get(SubjectClassification.class, id);
+      sessionFactory.getCurrentSession().delete(classification);
+      
+    }
 }

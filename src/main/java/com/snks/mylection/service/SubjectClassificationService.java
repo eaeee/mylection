@@ -10,5 +10,7 @@ public interface SubjectClassificationService {
 
 	List<SubjectClassification> findAll();
 
+	void delete(int id);
+
 
 }

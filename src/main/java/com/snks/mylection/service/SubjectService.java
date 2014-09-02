@@ -10,4 +10,6 @@ public interface SubjectService {
 
 	List<Subject> findAll();
 
+	void delete(int id);
+
 }

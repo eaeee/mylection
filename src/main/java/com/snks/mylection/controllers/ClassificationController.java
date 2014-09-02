@@ -3,6 +3,7 @@ package com.snks.mylection.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.snks.mylection.model.SubjectClassification;
@@ -28,4 +29,12 @@ public class ClassificationController {
 	   return "redirect:/classifications";
     }
 
+	
+	  @RequestMapping(value="/classifications/remove/{id}")
+	  public String removeClassification(@PathVariable int id) {
+		  classificationService.delete(id);
+	    return "redirect:/classifications";
+	    
+	  }
+	
 }
