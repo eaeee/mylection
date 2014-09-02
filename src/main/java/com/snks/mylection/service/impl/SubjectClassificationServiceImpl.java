@@ -35,4 +35,10 @@ public class SubjectClassificationServiceImpl implements SubjectClassificationSe
 		
 	}
 
+	@Override
+	public void save(SubjectClassification classification) {
+		subjectClassificationDao.save(classification);
+		
+	}
+
 }

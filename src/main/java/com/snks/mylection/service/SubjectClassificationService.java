@@ -12,5 +12,7 @@ public interface SubjectClassificationService {
 
 	void delete(int id);
 
+	void save(SubjectClassification classification);
+
 
 }

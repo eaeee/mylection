@@ -3,8 +3,10 @@ package com.snks.mylection.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.snks.mylection.model.SubjectClassification;
 import com.snks.mylection.service.SubjectClassificationService;
@@ -14,6 +16,19 @@ public class ClassificationController {
 	@Autowired
 	private SubjectClassificationService classificationService;
 	
+	
+	  @ModelAttribute("classification")
+	  public SubjectClassification constructClassification() {
+	    return new SubjectClassification();
+	  }
+	  
+	  @RequestMapping(value="/classifications", method=RequestMethod.POST)
+	  public String doAddClassification(@ModelAttribute("classification") SubjectClassification classification ) {
+	    classificationService.addSubjectClassification(classification);
+	    return "redirect:/classifications";
+	}
+	  
+	  
 	@RequestMapping("/classifications")
     public String getClassifications( Model model) {
 		model.addAttribute("classifications", classificationService.findAll());
@@ -36,5 +51,6 @@ public class ClassificationController {
 	    return "redirect:/classifications";
 	    
 	  }
+
 	
 }

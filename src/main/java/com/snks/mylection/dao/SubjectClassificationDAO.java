@@ -12,4 +12,6 @@ public interface SubjectClassificationDAO {
 
 	void delete(int id);
 
+	void save(SubjectClassification classification);
+
 }

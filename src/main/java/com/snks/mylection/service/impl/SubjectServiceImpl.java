@@ -34,4 +34,10 @@ public class SubjectServiceImpl implements SubjectService {
 		
 	}
 
+	@Override
+	public void save(Subject subject) {
+		subjectDao.save(subject);
+		
+	}
+
 }

@@ -33,4 +33,10 @@ public class SubjectClassificationDAOImpl implements SubjectClassificationDAO {
       sessionFactory.getCurrentSession().delete(classification);
       
     }
+
+	@Override
+	public void save(SubjectClassification classification) {
+		sessionFactory.getCurrentSession().save(classification);
+		
+	}
 }

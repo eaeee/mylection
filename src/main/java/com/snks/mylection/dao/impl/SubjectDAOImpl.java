@@ -33,4 +33,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 	    sessionFactory.getCurrentSession().delete(subject);
 	    
 	  }
+
+	@Override
+	public void save(Subject subject) {
+		sessionFactory.getCurrentSession().save(subject);
+		
+	}
 }
