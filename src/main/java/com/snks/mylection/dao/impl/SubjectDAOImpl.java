@@ -2,8 +2,10 @@ package com.snks.mylection.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +39,14 @@ public class SubjectDAOImpl implements SubjectDAO {
 	@Override
 	public void save(Subject subject) {
 		sessionFactory.getCurrentSession().save(subject);
+		
+	}
+
+	@Override
+	public Subject findByName(String name) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Subject.class);
+		criteria.add(Restrictions.eq("subjectName",name));
+		return (Subject)criteria.uniqueResult();
 		
 	}
 }

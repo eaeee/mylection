@@ -12,6 +12,9 @@ public class LectionJSON {
 	
 	public String lectionBody;
 	
+	public String subject;
+	
+	public String classification;
 	
 	
 	public String getLectionName() {

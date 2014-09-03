@@ -13,9 +13,12 @@ import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.dao.UserDAO;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.LectionDate;
+import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.User;
 import com.snks.mylection.model.json.LectionJSON;
 import com.snks.mylection.service.LectionService;
+import com.snks.mylection.service.SubjectClassificationService;
+import com.snks.mylection.service.SubjectService;
 
 @Service
 @Transactional
@@ -25,6 +28,10 @@ public class LectionServiceImpl implements LectionService {
 	
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private SubjectService subjectService;
+	
 
 
 	@Override
@@ -43,6 +50,8 @@ public class LectionServiceImpl implements LectionService {
 		lection.setAuthor(user);
 		lection.setLectionBody(lect.lectionBody);
 		lection.setLectionName(lect.lectionName);
+		Subject subject = subjectService.findByName(lect.subject);
+		lection.setSubject(subject);
 		LectionDate lectionDate = new LectionDate();
 		lectionDate.setCreationDate(new Date(lect.lectionCreationDate));
 		lectionDate.setAccessedDate(new Date(lect.lectionCreationDate));

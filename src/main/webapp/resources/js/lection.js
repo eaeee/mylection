@@ -20,8 +20,6 @@ $(document).ready(function() {
 	      $("#lection").empty();
 	      $("#lection").append(htmltext);
 	      UpdateMath($("#lection").val());
-	      console.log("ololo");
 	  }
-	  console.log("ololo");
   $(document).bind('keydown','enter',htmlConvert);
 });

@@ -14,4 +14,6 @@ public interface SubjectClassificationDAO {
 
 	void save(SubjectClassification classification);
 
+	SubjectClassification findByName(String subjectClassificationName);
+
 }

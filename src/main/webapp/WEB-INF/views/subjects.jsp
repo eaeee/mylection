@@ -81,7 +81,18 @@
 				<div class="col-sm-10">
 					<form:input type="text" path="subjectName"/>
 				</div>
-			</div>          
+			</div>
+			
+			<div class="form-group">
+				<label for="name" class="control-label"> Классификация:</label>						
+				<div class="">
+				<form:form commandName="classification">
+					<form:select path="subjectClassificationName">
+						<form:options items="${classifications}" />
+					</form:select>
+				</form:form>
+				</div>		
+			</div>	          
       </div>
       
       <div class="modal-footer">

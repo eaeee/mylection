@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.snks.mylection.model.Subject;
+import com.snks.mylection.model.SubjectClassification;
+import com.snks.mylection.service.SubjectClassificationService;
 import com.snks.mylection.service.SubjectService;
 
 
@@ -19,35 +21,30 @@ public class SubjectController {
 	
 	@Autowired
 	SubjectService subjectService;
-	
+	@Autowired
+	SubjectClassificationService subjectClassificationService;
 	
 	@ModelAttribute("subject")
 	public Subject constructSubject() {
 		return new Subject();
 	}
 	
+	@ModelAttribute("classification")
+	public SubjectClassification getClassification() {
+		return new SubjectClassification();
+	}
 
-@RequestMapping(value="/subjects", method=RequestMethod.POST)
-public String doAddSubject(@ModelAttribute("subject") Subject subject ) {
-
-    System.out.println("lol");
-    subjectService.save(subject);
-    return "redirect:/subjects";
-}
+	@RequestMapping(value="/subjects", method=RequestMethod.POST)
+	public String doAddSubject(@ModelAttribute("subject") Subject subject,@ModelAttribute("classification") SubjectClassification classification ) {
+	    subjectService.saveWithClass(subject,classification.getSubjectClassificationName());
+	    return "redirect:/subjects";
+	}
 	
 	@RequestMapping("/subjects")
     public String getSubjects( Model model) {
 		model.addAttribute("subjects", subjectService.findAll());
+		model.addAttribute("classifications",subjectClassificationService.findAllNames());
 	   return "subjects";
-    }
-	
-	@RequestMapping("/subjects1")
-    public String asdas() {
-		String subjectName="Математический анализ";
-		Subject subject =  new Subject();
-		subject.setSubjectName(subjectName);
-		subjectService.addSubject(subject);
-	   return "redirect:/subjects";
     }
 	
 	  @RequestMapping(value="/subjects/remove/{id}")

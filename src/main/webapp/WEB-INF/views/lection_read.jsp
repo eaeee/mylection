@@ -21,7 +21,7 @@
       <p id="lectionAuthor">${lection.getAuthor().getUserName() }</p>
       
       <li><b>Классификация:</b></li>
-      <p id="lectionSubjectClassification">Математика</p>
+      <p id="lectionSubjectClassification"></p>
       
       <li><b>Предмет:</b></li>
       <p id="lectionSubject">Математический анализ</p>
@@ -34,14 +34,27 @@
     </div>
     </div>
 	  <div class="col-lg-10 main">
-	    <div class="col-lg-10" well" id="lection-div">
+	    <div class="col-lg-10" well" id="lection-div" style="width:100%">
 	      <div id="lection">
-	        <p>
 				${lection.getLectionBody()}
-	        </p>
 	      </div>
 	    </div>
 	  </div> 
 </div>
+	<script>
+		  function render () {
+		      var markup = $("#lection").html();
+		      var converter = new Showdown.converter();
+		      var htmltext = converter.makeHtml(markup);
+		      $("#lection").empty();
+		      $("#lection").append(htmltext);
+		      UpdateMath($("#lection").val());
+		  }
+		  
+		$(document).ready(function() {
+			render();
+		});
+	</script>
+
 
 

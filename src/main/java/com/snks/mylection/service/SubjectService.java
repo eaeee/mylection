@@ -14,4 +14,8 @@ public interface SubjectService {
 
 	void save(Subject subject);
 
+	Subject findByName(String subject);
+
+	void saveWithClass(Subject subject, String subjectClassificationName);
+
 }

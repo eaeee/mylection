@@ -14,5 +14,9 @@ public interface SubjectClassificationService {
 
 	void save(SubjectClassification classification);
 
+	List<String> findAllNames();
+
+	SubjectClassification findByName(String subjectClassificationName);
+
 
 }

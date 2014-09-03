@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.snks.mylection.dao.SubjectDAO;
 import com.snks.mylection.model.Subject;
+import com.snks.mylection.model.SubjectClassification;
+import com.snks.mylection.service.SubjectClassificationService;
 import com.snks.mylection.service.SubjectService;
 
 @Service
@@ -16,6 +18,9 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Autowired
 	private SubjectDAO subjectDao;
+	
+	@Autowired
+	private SubjectClassificationService classificationService;
 
 	@Override
 	public void addSubject(Subject subject) {
@@ -37,6 +42,19 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public void save(Subject subject) {
 		subjectDao.save(subject);
+		
+	}
+
+	@Override
+	public Subject findByName(String name) {
+		 return subjectDao.findByName(name);
+	}
+
+	@Override
+	public void saveWithClass(Subject subject, String subjectClassificationName) {
+		SubjectClassification classification= classificationService.findByName(subjectClassificationName);
+		subject.setClassification(classification);
+		save(subject);
 		
 	}
 

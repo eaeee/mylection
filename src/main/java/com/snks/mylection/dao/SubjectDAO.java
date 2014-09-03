@@ -14,4 +14,6 @@ public interface SubjectDAO {
 
 	void save(Subject subject);
 
+	Subject findByName(String name);
+
 }

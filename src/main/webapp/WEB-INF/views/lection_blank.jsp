@@ -22,10 +22,10 @@
       <p id="lectionAuthor"><security:authentication property="name" /> </p>
       
       <li><b>Классификация:</b></li>
-      <p id="lectionSubjectClassification">Математика</p>
+      <p id="lectionSubjectClassification"></p>
       
       <li><b>Предмет:</b></li>
-      <p id="lectionSubject">Математический анализ</p>
+      <p id="lectionSubject"></p>
       
       </ul>
     <div class="btn-group">
@@ -139,13 +139,14 @@
 	      function getLectionJSON() {	  
 	    	  var lection = {};
 	    	  lection.lectionName = $('#lectionName').html().toString();
-	    	  lection.lectionCreationDate =  $('#lectionCreationDate').html().toString();
+	    	  lection.lectionCreationDate =  <%=creationDate%>;
 	    	  lection.lectionAuthor =  $('#lectionAuthor').html().toString();
-	    	  lection.lectionBody = $('#lection-markup').val();	 
-	    	  console.log(lection);
+	    	  lection.lectionBody = $('#lection-markup').val();
+	    	  lection.subject =  $('#lectionSubject').html();
+	    	  lection.classification= $('#lectionSubjectClassification').html();
 	          var lectionJSON = JSON.stringify(lection);
+	          console.log(lection);
 	          console.log(lectionJSON);
-	          
 	          return lectionJSON;
 	        };
 	    
