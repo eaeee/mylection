@@ -20,13 +20,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
+
+
+
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snks.mylection.model.Lection;
+import com.snks.mylection.model.Subject;
+import com.snks.mylection.model.SubjectClassification;
 import com.snks.mylection.model.json.LectionJSON;
 import com.snks.mylection.service.LectionService;
+import com.snks.mylection.service.SubjectClassificationService;
+import com.snks.mylection.service.SubjectService;
 import com.snks.mylection.service.UserService;
 
 @Controller
@@ -37,9 +45,16 @@ public class LectionController {
 	private LectionService lectionService;
 	@Autowired 
 	private JsonFactory jsonFactory;
-	
+	@Autowired
+	private SubjectService subjectService; 
+	@Autowired
+	private SubjectClassificationService subjectClassificationService;
 	@RequestMapping("/addlection")
     public String add(Model model,Principal principal) {
+		List<Subject> subjects= subjectService.findAll();
+		List<SubjectClassification> classifications = subjectClassificationService.findAll();
+		model.addAttribute("subjects",subjects);
+		model.addAttribute("classifications",classifications);
 	   return "lection_blank";
     }
 	

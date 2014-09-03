@@ -25,10 +25,10 @@
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
-			<th> lection ID</th> 
-			<th> lection Body</th>
-			<th> lection Date</th>
-			<th> operation</th>
+			<th> ID лекции</th> 
+			<th> Название</th>
+			<th> Дата создания</th>
+			<th> Действия</th>
 		</tr>
 	</thead>
 	
@@ -39,14 +39,14 @@
 					${lection.lectionId}
 				</td> 
 			  	<td>
-					${lection.lectionBody}
+					<a href="<spring:url value="/lections/${lection.lectionId}"/>">  ${lection.lectionName}     </a>
 				</td> 
 			  	<td>
-					${lection.lectionDate}
+					${lection.lectionDate.getCreationDate()}
 				</td>
 				<td>
 					<a href="<spring:url value="/lections/remove/${lection.lectionId}"/>" class="btn btn-danger triggerRemove"> 
-						remove
+						удалить
 					</a> 
 				</td> 				
 			</tr>

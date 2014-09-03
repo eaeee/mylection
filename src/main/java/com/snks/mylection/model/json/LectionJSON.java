@@ -1,10 +1,5 @@
 package com.snks.mylection.model.json;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 
 public class LectionJSON {
 	

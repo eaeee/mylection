@@ -94,4 +94,13 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+
+	@Override
+	public User findByIdWithLections(int id) {
+		User user = findById(id);
+		List<Lection> lections = lectionDAO.findByUser(user);
+		user.setLections(lections);
+		return user;
+	}
+
 }

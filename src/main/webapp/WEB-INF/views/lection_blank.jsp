@@ -4,6 +4,7 @@
 <%@ include file="../layouts/lection-resourses.jsp" %>
 <%@page import="java.io.*, java.util.Date, java.util.Enumeration,java.text.DateFormat, java.text.SimpleDateFormat" %> 
 <%DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");%>
+<%long creationDate = new Date().getTime(); %>
 <div class="row">
     <div class="col-lg-2 sidebar">
       <ul class="lectionMeta">
@@ -12,10 +13,10 @@
       <p id="lectionName"></p>
       
       <li> <b>Дата создания:</b></li>
-      <p id="lectionCreationDate"><%=new Date().getTime() %></p>
+      <p id="lectionCreationDate"><%=new Date(creationDate)%></p>
       
       <li><b>Последнее изменение:</b></li>
-      <p id="lectionModifiedDate"></p>
+      <p id="lectionModifiedDate"><%=new Date(creationDate)%></p>
       
       <li><b>Автор:</b></li>
       <p id="lectionAuthor"><security:authentication property="name" /> </p>
@@ -52,7 +53,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="lectionMetaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog row">
     <div class="modal-content">
       
       <div class="modal-header">
@@ -61,12 +62,36 @@
       </div>
       
       <div class="modal-body">
-			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label"> Имя лекции:</label>
-				<div class="col-sm-10">
-					<input type="text" id="lectionNameModal">
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label"> Имя лекции:</label>				
+					<div class="">
+						<input type="text" id="lectionNameModal">
+					</div>
+				</div>	
+				
+				<div class="form-group">
+					<label for="name" class="control-label"> Классификация:</label>						
+					<div class="">
+						<select class="form-control" id="subject_class_select">
+							<c:forEach items="${classifications}"  var="classification">
+							    <option value="${classification.getSubjectClassificationName()}">${classification.getSubjectClassificationName()}</option>
+							</c:forEach>
+						</select>
+					</div>		
+				</div>				
+				
+				
+				<div class="form-group">
+					<label for="name" class="control-label"> Предмет:</label>	
+					<div class="">
+						<select class="form-control" id="subject_select">
+							<c:forEach items="${subjects}"  var="subject">
+							    <option value="${subject.getSubjectName()}">${subject.getSubjectName()}</option>
+							</c:forEach>
+						</select>
+					</div>		
 				</div>
-			</div>          
+																	
       </div>
       
       <div class="modal-footer">
@@ -84,7 +109,12 @@
 		
 		$("#saveLectionMetaButton" ).click(function() {
 			$('#lectionName').empty();
+			$('#lectionSubjectClassification').empty();
+			$('#lectionSubject').empty();
+			
 			$('#lectionName').append($('#lectionNameModal').val());
+			$('#lectionSubjectClassification').append($("#subject_class_select option:selected").val());
+			$('#lectionSubject').append($("#subject_select option:selected").val());
 			$('#lectionMetaModal').modal('hide');
 		});
 		
