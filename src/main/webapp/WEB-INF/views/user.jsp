@@ -24,16 +24,19 @@
 <br>
 <br>
 
-<h1>${user.userName}</h1>
+<h1>${user.userName} </h1> 
+<h2>Количество лекций: ${user.lections.size()}</h2>
 
 
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>
-			<th> lection ID</th> 
-			<th> lection Name</th>
-			<th> lection Date</th>
-			<th> operations</th>
+			<th> ID лекции</th> 
+			<th> Название</th>
+			<th> Предмет</th>
+			<th> Классификация</th>
+			<th> Дата создания</th>
+			<th> Действия</th>
 		</tr>
 	</thead>
 	
@@ -44,13 +47,19 @@
 					${lection.lectionId}
 				</td> 
 			  	<td>
-				  	<a href="<spring:url value="/lections/${lection.lectionId}"/>">
-						${lection.lectionName}
-					</a> 
+					<a href="<spring:url value="/lections/${lection.lectionId}"/>">  ${lection.lectionName}     </a>
 				</td> 
+			  	
 			  	<td>
-					${lection.lectionDate.getCreationDate().getTime()}
-				</td>
+					${lection.getSubject().getSubjectName()}
+				</td> 
+				<td>
+					${lection.getSubject().getClassification().getSubjectClassificationName()}
+				</td> 
+			  	
+			  	<td>
+					${lection.lectionDate.getCreationDate()}
+				</td>				
 				<td>
 					<a href="<spring:url value="/lections/remove/${lection.lectionId}"/>" class="btn btn-danger triggerRemove"> 
 						remove

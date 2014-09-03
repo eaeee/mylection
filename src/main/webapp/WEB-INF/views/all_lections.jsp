@@ -27,7 +27,10 @@
 		<tr>
 			<th> ID лекции</th> 
 			<th> Название</th>
+			<th> Предмет</th>
+			<th> Классификация</th>
 			<th> Дата создания</th>
+			<th> Автор</th>
 			<th> Действия</th>
 		</tr>
 	</thead>
@@ -41,14 +44,27 @@
 			  	<td>
 					<a href="<spring:url value="/lections/${lection.lectionId}"/>">  ${lection.lectionName}     </a>
 				</td> 
+			  	
+			  	<td>
+					${lection.getSubject().getSubjectName()}
+				</td> 
+				<td>
+					${lection.getSubject().getClassification().getSubjectClassificationName()}
+				</td> 
+			  	
 			  	<td>
 					${lection.lectionDate.getCreationDate()}
-				</td>
+				</td>	
+			  	<td>
+					${lection.getAuthor().getUserName()}
+				</td>				
+				
 				<td>
 					<a href="<spring:url value="/lections/remove/${lection.lectionId}"/>" class="btn btn-danger triggerRemove"> 
 						удалить
 					</a> 
 				</td> 				
+			
 			</tr>
 		</c:forEach>
 	</tbody>
