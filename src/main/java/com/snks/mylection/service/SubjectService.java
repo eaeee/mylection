@@ -18,4 +18,6 @@ public interface SubjectService {
 
 	void saveWithClass(Subject subject, String subjectClassificationName);
 
+	List<String> getSubjectsNamesByClass(String classificationName);
+
 }

@@ -3,6 +3,7 @@ package com.snks.mylection.dao;
 import java.util.List;
 
 import com.snks.mylection.model.Subject;
+import com.snks.mylection.model.SubjectClassification;
 
 public interface SubjectDAO {
 
@@ -15,5 +16,7 @@ public interface SubjectDAO {
 	void save(Subject subject);
 
 	Subject findByName(String name);
+
+	List<Subject> findByClass(SubjectClassification classification);
 
 }

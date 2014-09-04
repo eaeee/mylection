@@ -56,11 +56,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean 
-	InitDbCondition initdbcondition() {
-		return new InitDbCondition();
-	}
-	
-	@Bean 
 	JsonFactory getJsonFactory(){
 		return new JsonFactory();
 	}

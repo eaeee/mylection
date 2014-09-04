@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.snks.mylection.dao.SubjectDAO;
 import com.snks.mylection.model.Subject;
+import com.snks.mylection.model.SubjectClassification;
 
 @Repository
 public class SubjectDAOImpl implements SubjectDAO {
@@ -48,5 +49,13 @@ public class SubjectDAOImpl implements SubjectDAO {
 		criteria.add(Restrictions.eq("subjectName",name));
 		return (Subject)criteria.uniqueResult();
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Subject> findByClass(SubjectClassification classification) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Subject.class);
+		criteria.add(Restrictions.eq("classification",classification));
+		return (List<Subject>)criteria.list();
 	}
 }

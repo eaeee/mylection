@@ -1,5 +1,6 @@
 package com.snks.mylection.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,17 @@ public class SubjectServiceImpl implements SubjectService {
 		subject.setClassification(classification);
 		save(subject);
 		
+	}
+
+	@Override
+	public List<String> getSubjectsNamesByClass(String classificationName) {
+		SubjectClassification classification=  classificationService.findByName(classificationName);
+		List<Subject> subjects =  subjectDao.findByClass(classification);
+		List<String> names = new ArrayList<String>();
+		for ( Subject subject : subjects) { 
+			names.add(subject.getSubjectName());
+		}
+		return names;
 	}
 
 }

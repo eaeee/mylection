@@ -25,9 +25,6 @@ public class SubjectClassification {
 	@OneToMany(mappedBy="classification")
 	private List<Subject> subjects = new ArrayList<Subject>();
 	
-	
-	
-	
 	public List<Subject> getSubjects() {
 		return subjects;
 	}

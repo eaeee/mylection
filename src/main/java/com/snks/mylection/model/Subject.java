@@ -24,7 +24,7 @@ public class Subject {
 	private String subjectName;
 	
 	@ManyToOne
-	@JoinColumn(name="SUBJECT_ID")
+	@JoinColumn(name="CLASS_ID")
 	private SubjectClassification classification;
 	
 	public SubjectClassification getClassification() {

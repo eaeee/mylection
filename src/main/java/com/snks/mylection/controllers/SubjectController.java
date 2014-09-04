@@ -1,6 +1,5 @@
 package com.snks.mylection.controllers;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,7 @@ public class SubjectController {
 	}
 
 	@RequestMapping(value="/subjects", method=RequestMethod.POST)
-	public String doAddSubject(@Valid @ModelAttribute("subject") Subject subject,@ModelAttribute("classification") SubjectClassification classification,BindingResult bindingResult ) {
+	public String doAddSubject(/*@Valid*/ @ModelAttribute("subject") Subject subject,@ModelAttribute("classification") SubjectClassification classification,BindingResult bindingResult ) {
 		if (bindingResult.hasErrors()) {
 			return "subjects";
 		}

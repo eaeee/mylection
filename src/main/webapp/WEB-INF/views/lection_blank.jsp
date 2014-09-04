@@ -85,9 +85,7 @@
 					<label for="name" class="control-label"> Предмет:</label>	
 					<div class="">
 						<select class="form-control" id="subject_select">
-							<c:forEach items="${subjects}"  var="subject">
-							    <option value="${subject.getSubjectName()}">${subject.getSubjectName()}</option>
-							</c:forEach>
+							
 						</select>
 					</div>		
 				</div>
@@ -106,7 +104,7 @@
 <script>
 	$(document).ready(function(){
 		$('#lectionMetaModal').modal('show');
-		
+		document.getElementById("subject_class_select").selectedIndex = "-1"; 
 		$("#saveLectionMetaButton" ).click(function() {
 			$('#lectionName').empty();
 			$('#lectionSubjectClassification').empty();
@@ -121,9 +119,8 @@
 	    $("#saveOnServerButton").click(function() {
 	        sendLection();
 	      });
-	    
 	    var saveURL = '<spring:url value="/lections/save"/>'; 
-	    
+	    var subjectsURL = '<spring:url value="/lections/getSubjects"/>'; 
 	    function sendLection() {
 	    	console.log(getLectionJSON());
 	        $.ajax({
@@ -135,7 +132,23 @@
 	            url: saveURL
 	        });
 	      };
-	      
+	      $( "#subject_class_select" ).change(function() {
+	    	  sendSubjectsRequest();
+	    	 // console.log($('#subject_class_select').find(":selected").text());
+	    	});
+	      function sendSubjectsRequest() {
+	    	  $.getJSON(subjectsURL+"/"+$('#subject_class_select').find(":selected").text(),
+	    			  function(data){
+/* 	    		          $.each(data.items, function(i,item){
+							console.log(item);
+	    		          }); */
+	    				  var optionsAsString = "";
+	    				  for(var i = 0; i < data.length; i++) {
+	    				      optionsAsString += "<option value='" + data[i] + "'>" + data[i] + "</option>";
+	    				  }
+	    				  $( '#subject_select' ).append( optionsAsString );
+	    	 		 });  
+	      }	      
 	      function getLectionJSON() {	  
 	    	  var lection = {};
 	    	  lection.lectionName = $('#lectionName').html().toString();

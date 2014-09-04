@@ -24,8 +24,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snks.mylection.model.Lection;
@@ -84,6 +88,15 @@ public class LectionController {
 	   Lection lection = lectionService.findById(id);
 	   model.addAttribute("lection",lection);
 		return "lection_read";
+    }
+	
+	@RequestMapping(value="/lections/getSubjects/{classificationName}")
+	public @ResponseBody String getSubjects(@PathVariable String classificationName,Model model,Principal principal) throws JsonProcessingException {
+		List<String> subjects = subjectService.getSubjectsNamesByClass(classificationName);
+		ObjectMapper objectMapper =  new ObjectMapper();
+		String test = objectMapper.writeValueAsString(subjects);
+		System.out.println(test);
+		return test;
     }
 	
 	@RequestMapping("/lections/edit/{id}")
