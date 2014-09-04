@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.snks.mylection.annotation.UniqueSubjectName;
+
 @Entity
 @Table(name="SUBJECTS")
 public class Subject {
@@ -18,6 +20,7 @@ public class Subject {
 	@Id @GeneratedValue
 	private int subjectId;
 	
+	@UniqueSubjectName(message="This subjectname already exists!")
 	private String subjectName;
 	
 	@ManyToOne

@@ -46,7 +46,7 @@
 	<br>
 </form:form>
 
-	<script>
+<script>
 	$(document).ready(function() {
 		$(".regForm").validate({
 			rules: {
@@ -86,4 +86,4 @@
 			}
 		});
 	});
-	</script>
+</script>

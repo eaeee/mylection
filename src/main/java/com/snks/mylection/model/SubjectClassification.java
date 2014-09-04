@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.snks.mylection.annotation.UniqueClassification;
+
 
 @Entity
 @Table(name="SUBJECT_CLASSIFICATIONS")
@@ -16,6 +18,8 @@ public class SubjectClassification {
 	@Id @GeneratedValue
 	private int subjectClassificationId;
 	
+	
+	@UniqueClassification(message="This classification name already exists!")
 	private String subjectClassificationName;
 
 	@OneToMany(mappedBy="classification")

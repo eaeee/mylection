@@ -18,7 +18,10 @@
 <br>
 <br>
 <br>
-
+<c:if test="${param.success eq true}">
+	
+	<div class="alert alert-success"> Registration successfull!</div>
+</c:if>
 
 
 

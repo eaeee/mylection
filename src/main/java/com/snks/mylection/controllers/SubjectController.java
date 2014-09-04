@@ -1,8 +1,11 @@
 package com.snks.mylection.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +38,11 @@ public class SubjectController {
 	}
 
 	@RequestMapping(value="/subjects", method=RequestMethod.POST)
-	public String doAddSubject(@ModelAttribute("subject") Subject subject,@ModelAttribute("classification") SubjectClassification classification ) {
-	    subjectService.saveWithClass(subject,classification.getSubjectClassificationName());
+	public String doAddSubject(@Valid @ModelAttribute("subject") Subject subject,@ModelAttribute("classification") SubjectClassification classification,BindingResult bindingResult ) {
+		if (bindingResult.hasErrors()) {
+			return "subjects";
+		}
+		subjectService.saveWithClass(subject,classification.getSubjectClassificationName());
 	    return "redirect:/subjects";
 	}
 	
