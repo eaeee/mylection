@@ -23,6 +23,10 @@
 <br>
 <br>
 <br>
+	<c:if test="${param.success eq true}">
+		
+		<div class="alert alert-success"> Registration successfull!</div>
+	</c:if>
 
 <h1>${user.userName} </h1> 
 <h2>Количество лекций: ${user.lections.size()}</h2>

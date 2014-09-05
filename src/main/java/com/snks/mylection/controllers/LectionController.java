@@ -6,7 +6,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,14 +59,16 @@ public class LectionController {
 		List<SubjectClassification> classifications = subjectClassificationService.findAll();
 		model.addAttribute("subjects",subjects);
 		model.addAttribute("classifications",classifications);
-	   return "lection_blank";
+		return "lection_blank";
     }
 	
 	@RequestMapping(value="/lections/save",method=RequestMethod.POST , consumes="application/json")
-    public void addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
+	@ResponseBody
+	public String addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper objectMapper =  new ObjectMapper();
 		LectionJSON lect = objectMapper.readValue(lectionJSON, LectionJSON.class);
 		lectionService.saveFromJSON(lect);
+		return "true";
     }
 	
 	@RequestMapping(value="/lections/remove/{id}")
@@ -103,6 +104,8 @@ public class LectionController {
 	@RequestMapping("/lections/edit/{id}")
     public String editLection(@PathVariable int id,Model model,Principal principal) {
 		Lection lection = lectionService.findById(id);
+		System.out.println(principal.getName());
+		System.out.println(lection.getAuthor().getUserName());
 		if (principal.getName()==lection.getAuthor().getUserName()) {
 			model.addAttribute("lection",lection);
 			return "lection_edit";
