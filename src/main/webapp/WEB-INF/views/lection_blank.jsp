@@ -139,9 +139,6 @@
 	      function sendSubjectsRequest() {
 	    	  $.getJSON(subjectsURL+"/"+$('#subject_class_select').find(":selected").text(),
 	    			  function(data){
-/* 	    		          $.each(data.items, function(i,item){
-							console.log(item);
-	    		          }); */
 	    				  var optionsAsString = "";
 	    				  for(var i = 0; i < data.length; i++) {
 	    				      optionsAsString += "<option value='" + data[i] + "'>" + data[i] + "</option>";

@@ -81,9 +81,9 @@ public class LectionServiceImpl implements LectionService {
 		return lectionDao.findByid(id);
 	}
 
-
+	@PreAuthorize("#lect.getLectionAuthor() == authentication.name or hasRole('ROLE_ADMIN')")	
 	@Override
-	public void updateFromJSON(LectionJSON lect,int id) {
+	public void updateFromJSON(@P("lect")LectionJSON lect,int id) {
 		String userName = lect.lectionAuthor;
 		User user = userDao.findUserByName(userName);
 		Lection lection = new Lection();

@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -100,10 +101,13 @@ public class LectionController {
     }
 	
 	@RequestMapping("/lections/edit/{id}")
-    public String editLection(@PathVariable int id,Model model) {
+    public String editLection(@PathVariable int id,Model model,Principal principal) {
 		Lection lection = lectionService.findById(id);
-		model.addAttribute("lection",lection);
-	   return "lection_edit";
+		if (principal.getName()==lection.getAuthor().getUserName()) {
+			model.addAttribute("lection",lection);
+			return "lection_edit";
+		}
+		return null;
     }
 	
 	@RequestMapping(value= "/lections/update/{id}",method=RequestMethod.POST , consumes="application/json")

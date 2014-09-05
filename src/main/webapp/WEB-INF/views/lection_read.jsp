@@ -27,11 +27,12 @@
       <p id="lectionSubject">Математический анализ</p>
       
       </ul>
+      <security:authentication var="user" property="principal" />
+     <security:authorize access="hasRole('ROLE_ADMIN') or '${user.getUsername()}'=='${lection.getAuthor().getUserName()}'">
     <div class="btn-group">
       <a href='<spring:url value="/lections/edit/${lection.getLectionId()}"/>'><button class="btn btn-primary" data-toggle="modal" >редактировать</button></a>
-
-    	
     </div>
+    </security:authorize>
     </div>
 	  <div class="col-lg-10 main">
 	    <div class="col-lg-10" well" id="lection-div" style="width:100%">

@@ -12,10 +12,10 @@
       <p id="lectionName">>${lection.getLectionName()}</p>
       
       <li> <b>Дата создания:</b></li>
-      <p id="lectionCreationDate">${lection.getLectionDate().getCreationDate().getTime()}</p>
+      <p id="lectionCreationDate">${lection.getLectionDate().getCreationDate()}</p>
       
       <li><b>Последнее изменение:</b></li>
-      <p id="lectionModifiedDate">${lection.getLectionDate().getModifiedDate().getTime()}</p>
+      <p id="lectionModifiedDate">${lection.getLectionDate().getModifiedDate()}</p>
       
       <li><b>Автор:</b></li>
       <p id="lectionAuthor">${lection.getAuthor().getUserName() }</p>
@@ -106,7 +106,7 @@
 	      function getLectionJSON() {	  
 	    	  var lection = {};
 	    	  lection.lectionName = $('#lectionName').html().toString();
-	    	  lection.lectionCreationDate =  $('#lectionCreationDate').html().toString();
+	    	  lection.lectionCreationDate =  ${lection.getLectionDate().getCreationDate().getTime()};
 	    	  lection.lectionAuthor =  $('#lectionAuthor').html().toString();
 	    	  lection.lectionBody = $('#lection-markup').val();	 
 	    	  console.log(lection);
