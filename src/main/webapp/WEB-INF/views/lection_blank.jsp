@@ -29,7 +29,6 @@
       
       </ul>
     <div class="btn-group">
-      <button class="btn" id="convertButton">Преобразовать</button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#lectionMetaModal">Изменить данные</button>
       <button class="btn btn-danger" id="saveOnServerButton">Сохранить на сервере</button>
     	

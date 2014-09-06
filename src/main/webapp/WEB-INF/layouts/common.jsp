@@ -16,7 +16,6 @@
 	
     <script src=" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
     <script src="http://cdn.jsdelivr.net/filesaver.js/0.2/FileSaver.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.js"></script>
     <% 
 	    String down="<span class='glyphicon glyphicon-arrow-down'></span>";  				
 		String ic="<span class='glyphicon glyphicon-user'></span>";
@@ -87,10 +86,6 @@
             </security:authorize>
             
             </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Поск по лекциям">
-            <%=ic_search %>
-          </form>
             
             <ul class="nav navbar-nav navbar-right">
             <c:if test="${
@@ -101,34 +96,11 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=ic_dwnld%>Скачать<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li id="pdf"><a href="#">PDF</a></li>
                   <li id="html"><a href="#">HTML</a></li>
                   <li id="txt"><a href="#">TXT</a></li>
                 </ul>
               </li>
-		    <script>
-			    console.log("test1");
-				$(document).ready(function() {
-			    		$("#html").click(function() { 
-			    			console.log("test2");
-			    			var blob = new Blob([$("#lection-markup").val()], {type: "text/plain;charset=utf-8"});
-			    			saveAs(blob, "Моя лекция.txt");
-			    			var doc = new jsPDF();
-			    			
-			    			// We'll make our own renderer to skip this editor
-			    			var specialElementHandlers = {
-			    				'#something': function(element, renderer){
-			    					return true;
-			    				}
-			    			};
-			    			doc.fromHTML($("#lection").html(), 15, 15, {
-			    				'width': 170, 
-			    				'elementHandlers': specialElementHandlers
-			    			});
-			    			doc.save("Еще одна моя лекция");
-			    		});
-				});
-    		</script>
+			<script src='<spring:url value="/resources/js/lection_download.js"/>'></script>
             
             </c:if>
               
