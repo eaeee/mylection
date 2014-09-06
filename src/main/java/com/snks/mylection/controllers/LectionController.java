@@ -3,6 +3,7 @@ package com.snks.mylection.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.SubjectClassification;
@@ -77,8 +77,10 @@ public class LectionController {
 	@RequestMapping(value="/lections/{id}")
 	public String getLection(@PathVariable int id,Model model,Principal principal) {
 	   Lection lection = lectionService.findById(id);
+	   lection.getLectionDate().setAccessedDate(new Date());
+	   lectionService.save(lection);
 	   model.addAttribute("lection",lection);
-		return "lection_read";
+	  return "lection_read";
     }
 	
 	@RequestMapping(value="/lections/getSubjects/{classificationName}")

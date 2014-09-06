@@ -21,4 +21,6 @@ public interface LectionService {
 
 	void delete(Lection lection);
 
+	void save(Lection lection);
+
 }
