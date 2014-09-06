@@ -53,8 +53,8 @@ public class LectionServiceImpl implements LectionService {
 		lection.setSubject(subject);
 		LectionDate lectionDate = new LectionDate();
 		lectionDate.setCreationDate(new Date(lect.lectionCreationDate));
-		lectionDate.setAccessedDate(new Date(lect.lectionCreationDate));
-		lectionDate.setModifiedDate(new Date(lect.lectionCreationDate));
+		lectionDate.setAccessedDate(new Date(lect.lectionAccessedDate));
+		lectionDate.setModifiedDate(new Date(lect.lectionModifiedDate));
 		lection.setLectionDate(lectionDate);	
 		lectionDao.save(lection);
 		return lection.getLectionId();
@@ -92,8 +92,8 @@ public class LectionServiceImpl implements LectionService {
 		lection.setLectionName(lect.lectionName);
 		LectionDate lectionDate = new LectionDate();
 		lectionDate.setCreationDate(new Date(lect.lectionCreationDate));
-		lectionDate.setAccessedDate(new Date(lect.lectionCreationDate));
-		lectionDate.setModifiedDate(new Date(lect.lectionCreationDate));
+		lectionDate.setAccessedDate(new Date(lect.lectionAccessedDate));
+		lectionDate.setModifiedDate(new Date(lect.lectionModifiedDate));
 		lection.setLectionDate(lectionDate);
 		lection.setLectionId(id);
 		lectionDao.update(lection);

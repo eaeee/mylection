@@ -8,6 +8,10 @@ public class LectionJSON {
 	
 	public long lectionCreationDate;
 	
+	public long lectionModifiedDate;
+	
+	public long lectionAccessedDate;
+	
 	public String lectionAuthor;
 	
 	public String lectionBody;

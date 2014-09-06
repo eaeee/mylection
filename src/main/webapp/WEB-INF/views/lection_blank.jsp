@@ -16,7 +16,7 @@
       <p id="lectionCreationDate"><%=new Date(creationDate)%></p>
       
       <li><b>Последнее изменение:</b></li>
-      <p id="lectionModifiedDate"><%=new Date(creationDate)%></p>
+      <p id="lectionModifiedDate"></p>
       
       <li><b>Автор:</b></li>
       <p id="lectionAuthor"><security:authentication property="name" /></p>

@@ -2,6 +2,7 @@ $(document).ready(function(){
 	var lectionId;
 	var URL = saveURL;
 	var msg = " успешно сохранена";
+	var lastDate;
 	$('#lectionMetaModal').modal('show');
 	document.getElementById("subject_class_select").selectedIndex = "-1"; 
 	$("#saveLectionMetaButton" ).click(function() {
@@ -20,7 +21,12 @@ $(document).ready(function(){
     		URL = updateURL + lectionId;
     		msg = " успешно обновлена";
     	}
+    	var now  = new Date();
+    	lastDate = now.getTime();
         sendLection();
+        stringLastDate = now.toISOString();
+        $( '#lectionModifiedDate' ).empty(  );
+        $( '#lectionModifiedDate' ).append( stringLastDate );
       });
     $( "#subject_class_select" ).change(function() {
   	  sendSubjectsRequest();
@@ -53,6 +59,8 @@ $(document).ready(function(){
     	  var lection = {};
     	  lection.lectionName = $('#lectionName').html().toString();
     	  lection.lectionCreationDate =  creationDate;
+    	  lection.lectionModifiedDate = lastDate;
+    	  lection.lectionAccessedDate = lastDate;
     	  lection.lectionAuthor =  $('#lectionAuthor').html().toString();
     	  lection.lectionBody = $('#lection-markup').val();
     	  lection.subject =  $('#lectionSubject').html();
