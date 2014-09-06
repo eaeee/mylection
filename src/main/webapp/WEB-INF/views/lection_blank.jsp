@@ -100,7 +100,10 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-var creationDate = <%=creationDate%>;
+<script>
+	var creationDate = <%=creationDate%>;
+	var saveURL = '<spring:url value="/lections/save"/>'; 
+	var subjectsURL = '<spring:url value="/lections/getSubjects"/>';
+	var updateURL = '<spring:url value="/lections/update/${lection.getLectionId()}"/>'; 
 </script>
 <script src='<spring:url value="/resources/js/lection_blank.js"/>'></script>

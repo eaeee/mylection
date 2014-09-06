@@ -12,19 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -32,6 +19,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.SubjectClassification;
@@ -104,9 +92,7 @@ public class LectionController {
 	@RequestMapping("/lections/edit/{id}")
     public String editLection(@PathVariable int id,Model model,Principal principal) {
 		Lection lection = lectionService.findById(id);
-		System.out.println(principal.getName());
-		System.out.println(lection.getAuthor().getUserName());
-		if (principal.getName()==lection.getAuthor().getUserName()) {
+		if (principal.getName().equals(lection.getAuthor().getUserName())) {
 			model.addAttribute("lection",lection);
 			return "lection_edit";
 		}
