@@ -78,43 +78,8 @@
   </div>
 </div>
 <script>
-	$(document).ready(function(){		
-		$("#saveLectionMetaButton" ).click(function() {
-			$('#lectionName').empty();
-			$('#lectionName').append($('#lectionNameModal').val());
-			$('#lectionMetaModal').modal('hide');
-		});
-		
-	    $("#saveOnServerButton").click(function() {
-	        sendLection();
-	      });
-	    
-	    var updateURL = '<spring:url value="/lections/update/${lection.getLectionId()}"/>'; 
-	    
-	    function sendLection() {
-	    	console.log(getLectionJSON());
-	        $.ajax({
-	            contentType: 'application/json',
-	            data: getLectionJSON(),
-	            dataType: 'json',
-	            processData: false,
-	            type: 'POST',
-	            url: updateURL
-	        });
-	      };
-	      
-	      function getLectionJSON() {	  
-	    	  var lection = {};
-	    	  lection.lectionName = $('#lectionName').html().toString();
-	    	  lection.lectionCreationDate =  ${lection.getLectionDate().getCreationDate().getTime()};
-	    	  lection.lectionAuthor =  $('#lectionAuthor').html().toString();
-	    	  lection.lectionBody = $('#lection-markup').val();	 
-	    	  console.log(lection);
-	          var lectionJSON = JSON.stringify(lection);
-	          console.log(lectionJSON);
-	          
-	          return lectionJSON;
-	        };
-	    
-	});
+	var subjectsURL = '<spring:url value="/lections/getSubjects"/>';
+	var updateURL = '<spring:url value="/lections/update/${lection.getLectionId()}"/>'; 
+	var creationDate = ${lection.getLectionDate().getCreationDate().getTime()};
 </script>
+<script src='<spring:url value="/resources/js/lection_edit.js"/>'></script>

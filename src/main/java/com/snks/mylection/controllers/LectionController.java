@@ -52,11 +52,12 @@ public class LectionController {
 	
 	@RequestMapping(value="/lections/save",method=RequestMethod.POST , consumes="application/json")
 	@ResponseBody
-	public String addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
+	public int addLection(@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper objectMapper =  new ObjectMapper();
 		LectionJSON lect = objectMapper.readValue(lectionJSON, LectionJSON.class);
-		lectionService.saveFromJSON(lect);
-		return "true";
+		int lectId = lectionService.saveFromJSON(lect);
+		System.out.println(lectId);
+		return lectId;
     }
 	
 	@RequestMapping(value="/lections/remove/{id}")
@@ -100,10 +101,10 @@ public class LectionController {
     }
 	
 	@RequestMapping(value= "/lections/update/{id}",method=RequestMethod.POST , consumes="application/json")
-    public void updateLection(@PathVariable int id,@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException {
+    public  @ResponseBody int updateLection(@PathVariable int id,@RequestBody String lectionJSON) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper objectMapper =  new ObjectMapper();
 		LectionJSON lect = objectMapper.readValue(lectionJSON, LectionJSON.class);
-		lectionService.updateFromJSON(lect,id);
+		return lectionService.updateFromJSON(lect,id);
     }
 
 	

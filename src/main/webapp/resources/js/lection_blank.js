@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	var lectionId;
+	var URL = saveURL;
+	var msg = " успешно сохранена";
 	$('#lectionMetaModal').modal('show');
 	document.getElementById("subject_class_select").selectedIndex = "-1"; 
 	$("#saveLectionMetaButton" ).click(function() {
@@ -13,22 +16,26 @@ $(document).ready(function(){
 	});
 	
     $("#saveOnServerButton").click(function() {
+    	if (lectionId) {
+    		URL = updateURL + lectionId;
+    		msg = " успешно обновлена";
+    	}
         sendLection();
       });
     $( "#subject_class_select" ).change(function() {
   	  sendSubjectsRequest();
   	});
     function sendLection() {
-    	console.log(getLectionJSON());
         $.ajax({
             contentType: 'application/json',
             data: getLectionJSON(),
             dataType: 'json',
             processData: false,
             type: 'POST',
-            url: saveURL,
+            url: URL,
             success: function (data, textStatus) { 
-				alert("Лекция сохранена");
+            	lectionId = data;
+				alert("Лекция id= "+lectionId + msg);
             } 
         });
       };

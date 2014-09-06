@@ -17,7 +17,6 @@ import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.User;
 import com.snks.mylection.model.json.LectionJSON;
 import com.snks.mylection.service.LectionService;
-import com.snks.mylection.service.SubjectClassificationService;
 import com.snks.mylection.service.SubjectService;
 
 @Service
@@ -43,7 +42,7 @@ public class LectionServiceImpl implements LectionService {
 
 
 	@Override
-	public void saveFromJSON(LectionJSON lect) {
+	public int saveFromJSON(LectionJSON lect) {
 		String userName = lect.lectionAuthor;
 		User user = userDao.findUserByName(userName);
 		Lection lection = new Lection();
@@ -58,6 +57,7 @@ public class LectionServiceImpl implements LectionService {
 		lectionDate.setModifiedDate(new Date(lect.lectionCreationDate));
 		lection.setLectionDate(lectionDate);	
 		lectionDao.save(lection);
+		return lection.getLectionId();
 		
 	}
 
@@ -83,7 +83,7 @@ public class LectionServiceImpl implements LectionService {
 
 	@PreAuthorize("#lect.getLectionAuthor() == authentication.name or hasRole('ROLE_ADMIN')")	
 	@Override
-	public void updateFromJSON(@P("lect")LectionJSON lect,int id) {
+	public int updateFromJSON(@P("lect")LectionJSON lect,int id) {
 		String userName = lect.lectionAuthor;
 		User user = userDao.findUserByName(userName);
 		Lection lection = new Lection();
@@ -97,6 +97,7 @@ public class LectionServiceImpl implements LectionService {
 		lection.setLectionDate(lectionDate);
 		lection.setLectionId(id);
 		lectionDao.update(lection);
+		return lection.getLectionId();
 		
 	}
 

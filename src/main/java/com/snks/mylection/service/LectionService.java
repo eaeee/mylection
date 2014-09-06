@@ -9,7 +9,7 @@ public interface LectionService {
 
 	void save(Lection lection, String name);
 
-	void saveFromJSON(LectionJSON lect);
+	int saveFromJSON(LectionJSON lect);
 
 	void delete(int id);
 
@@ -17,7 +17,7 @@ public interface LectionService {
 
 	Lection findById(int id);
 
-	void updateFromJSON(LectionJSON lect, int id);
+	int updateFromJSON(LectionJSON lect, int id);
 
 	void delete(Lection lection);
 

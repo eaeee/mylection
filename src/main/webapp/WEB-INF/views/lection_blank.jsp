@@ -19,7 +19,7 @@
       <p id="lectionModifiedDate"><%=new Date(creationDate)%></p>
       
       <li><b>Автор:</b></li>
-      <p id="lectionAuthor"><security:authentication property="name" /> </p>
+      <p id="lectionAuthor"><security:authentication property="name" /></p>
       
       <li><b>Классификация:</b></li>
       <p id="lectionSubjectClassification"></p>
@@ -104,6 +104,6 @@
 	var creationDate = <%=creationDate%>;
 	var saveURL = '<spring:url value="/lections/save"/>'; 
 	var subjectsURL = '<spring:url value="/lections/getSubjects"/>';
-	var updateURL = '<spring:url value="/lections/update/${lection.getLectionId()}"/>'; 
+	var updateURL = '<spring:url value="/lections/update/"/>'; 
 </script>
 <script src='<spring:url value="/resources/js/lection_blank.js"/>'></script>

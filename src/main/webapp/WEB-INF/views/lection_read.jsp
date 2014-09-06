@@ -9,7 +9,7 @@
       <ul class="lectionMeta">
       
       <li><b>Имя лекции</b></li>
-      <p id="lectionName">>${lection.getLectionName()}</p>
+      <p id="lectionName">${lection.getLectionName()}</p>
       
       <li> <b>Дата создания:</b></li>
       <p id="lectionCreationDate">${lection.getLectionDate().getCreationDate()}</p>
@@ -21,7 +21,7 @@
       <p id="lectionAuthor">${lection.getAuthor().getUserName() }</p>
       
       <li><b>Классификация:</b></li>
-      <p id="lectionSubjectClassification"></p>
+      <p id="lectionSubjectClassification">${lection.getSubject().getClassification().getSubjectClassificationName()}</p>
       
       <li><b>Предмет:</b></li>
       <p id="lectionSubject">Математический анализ</p>
