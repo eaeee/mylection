@@ -78,7 +78,7 @@ public class LectionController {
 	public String getLection(@PathVariable int id,Model model,Principal principal) {
 	   Lection lection = lectionService.findById(id);
 	   lection.getLectionDate().setAccessedDate(new Date());
-	   lectionService.save(lection);
+	   lectionService.update(lection);
 	   model.addAttribute("lection",lection);
 	  return "lection_read";
     }

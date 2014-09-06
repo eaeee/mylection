@@ -110,9 +110,9 @@ public class LectionServiceImpl implements LectionService {
 
 
 	@Override
-	public void save(Lection lection) {
-		lectionDao.save(lection);
+	public void update(Lection lection) {
+		lectionDao.update(lection);
+		
 	}
-
 
 }
