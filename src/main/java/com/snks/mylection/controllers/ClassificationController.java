@@ -40,17 +40,7 @@ public class ClassificationController {
 		model.addAttribute("classifications", classificationService.findAll());
 	   return "classifications";
     }
-	
-	@RequestMapping("/classifications1")
-    public String asasdasddas() {
-		String subjectClassificationName="Математика";
-		SubjectClassification subjectClassification = new SubjectClassification();
-		subjectClassification.setSubjectClassificationName(subjectClassificationName);
-		classificationService.addSubjectClassification(subjectClassification);
-	   return "redirect:/classifications";
-    }
-
-	
+		
 	  @RequestMapping(value="/classifications/remove/{id}")
 	  public String removeClassification(@PathVariable int id) {
 		  classificationService.delete(id);

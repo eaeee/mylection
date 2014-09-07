@@ -5,18 +5,14 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Subqueries;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.snks.mylection.dao.LectionDAO;
 import com.snks.mylection.model.Lection;
-import com.snks.mylection.model.LectionDate;
 import com.snks.mylection.model.User;
 
 

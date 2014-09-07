@@ -25,6 +25,7 @@
 		String ic_search="<span class='glyphicon glyphicon-search'></span>";
 		String ic_dwnld="<span class='glyphicon glyphicon-download'></span>";
 		String ic_warn="<span class='glyphicon glyphicon-warning-sign'></span>";
+		String ic_acc = "<span class='glyphicon glyphicon-list-alt'>";
 	%>
 	<security:authorize access="isAuthenticated()">
 		<% ic_auth = "<span class='glyphicon glyphicon-log-out'></span>";%>
@@ -68,10 +69,14 @@
              <security:authorize access="isAuthenticated()">
               	 <li class="${current == 'account' ? 'active':''}"><a href='<spring:url value="/account"/>'><%=ic%> My account</a></li>              
               </security:authorize>
+              
               <security:authorize access="isAuthenticated()">
               	 <li><a href='<spring:url value="/addlection"/>'><span class="glyphicon glyphicon-plus"></span> Create lection</a></li>
-              
-              </security:authorize>  
+              </security:authorize>
+                      
+
+                
+               
               
              <security:authorize access="hasRole('ROLE_ADMIN')">
               <li class="dropdown">

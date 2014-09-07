@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.snks.mylection.model.Course;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.User;
+import com.snks.mylection.service.CourseService;
 import com.snks.mylection.service.UserService;
 
 @Controller
@@ -24,6 +26,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userServise;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	@RequestMapping("/users")
 	public String users( Model model) {
@@ -56,6 +61,7 @@ public class UserController {
 	public String account(Model model, Principal principal) {
 		String userName = principal.getName();
 		model.addAttribute("user",userServise.findByNameWithLections(userName));
+		model.addAttribute("courses", courseService.findAll());
 		return "account";
 		
 	}
@@ -94,5 +100,20 @@ public class UserController {
 		return available.toString();
 		
 	}
-
+	
+	
+	  @ModelAttribute("course")
+	  public Course constructCourse() {
+	    return new Course();
+	  }
+	  
+	  
+	  @RequestMapping(value="/account", method=RequestMethod.POST)
+	  public String doAddCourse(@ModelAttribute("course") Course course, Principal principal) {
+		  User user = userServise.findByName(principal.getName());
+		  course.setCourseAuthor(user);
+		  courseService.add(course);
+	    return "redirect:/account";
+	 }
+	  
 }
