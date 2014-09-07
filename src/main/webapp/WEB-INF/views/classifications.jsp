@@ -17,6 +17,7 @@
 <br>
 <br>
 <br>
+<h2>Количество классификаций всего: ${classifications.size()}</h2>
  <button class="btn btn-primary" data-target="#classificationModal" data-toggle="modal">Add classification</button>
 <table class="table table-bordered table-hover table-striped">
 	<thead>

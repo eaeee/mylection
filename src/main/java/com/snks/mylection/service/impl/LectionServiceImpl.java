@@ -115,4 +115,11 @@ public class LectionServiceImpl implements LectionService {
 		
 	}
 
+
+	@Override
+	public List<Lection> findLast() {
+
+		return lectionDao.findLast();
+	}
+
 }

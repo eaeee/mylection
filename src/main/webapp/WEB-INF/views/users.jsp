@@ -17,6 +17,7 @@
 <br>
 <br>
 <br>
+<h2>Количество пользователей всего: ${users.size()}</h2>
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>

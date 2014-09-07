@@ -18,6 +18,7 @@
 <br>
 <br>
  <button class="btn btn-primary" data-target="#subjectModal" data-toggle="modal">Add subject</button>
+ <h2>Количество предметов всего: ${subjects.size()}</h2>
 <table class="table table-bordered table-hover table-striped">
 	<thead>
 		<tr>

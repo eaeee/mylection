@@ -22,4 +22,6 @@ public interface LectionDAO {
 
 	void delete(Lection lection);
 
+	List<Lection> findLast();
+
 }

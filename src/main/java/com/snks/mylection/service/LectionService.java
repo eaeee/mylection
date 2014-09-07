@@ -23,4 +23,6 @@ public interface LectionService {
 
 	void update(Lection lection);
 
+	List<Lection> findLast();
+
 }

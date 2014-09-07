@@ -18,12 +18,7 @@
 <br>
 <br>
 <br>
-<c:if test="${param.success eq true}">
-	
-	<div class="alert alert-success"> Registration successfull!</div>
-</c:if>
-
-
+<h2>Количество лекций всего: ${lections.size()}</h2>
 
 <table class="table table-bordered table-hover table-striped">
 	<thead>
