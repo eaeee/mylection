@@ -65,7 +65,7 @@
 					${lection.lectionDate.getCreationDate()}
 				</td>				
 				<td>
-					<a href="<spring:url value="/lections/remove/${lection.lectionId}"/>" class="btn btn-danger triggerRemove"> 
+					<a href="<spring:url value="/lections/remove/${lection.lectionId}?target=user"/>" class="btn btn-danger triggerRemove"> 
 						remove
 					</a> 
 					<a href="<spring:url value="/lections/edit/${lection.lectionId}"/>" class="btn btn-primary triggerEdit"> 

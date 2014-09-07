@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -61,9 +62,16 @@ public class LectionController {
     }
 	
 	@RequestMapping(value="/lections/remove/{id}")
-	public String removeLection(@PathVariable int id) {
+	public String removeLection(@PathVariable int id, @RequestParam String target) {
 		Lection lection = lectionService.findById(id);
 		lectionService.delete(lection);
+		System.out.println(target);
+		if (target.equals("user")) {
+			return "redirect:/account";
+		} 
+		if (target.equals("lections")) {
+			return "redirect:/all_lections";
+		} 
 		return "redirect:/";
     }
 	
