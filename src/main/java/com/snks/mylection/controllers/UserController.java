@@ -61,7 +61,7 @@ public class UserController {
 	public String account(Model model, Principal principal) {
 		String userName = principal.getName();
 		model.addAttribute("user",userServise.findByNameWithLections(userName));
-		model.addAttribute("courses", courseService.findAll());
+		model.addAttribute("courses", courseService.findByUserName(userName));
 		return "account";
 		
 	}

@@ -24,4 +24,6 @@ public interface LectionDAO {
 
 	List<Lection> findLast();
 
+	Lection findByIdWithCourses(int lectionId);
+
 }

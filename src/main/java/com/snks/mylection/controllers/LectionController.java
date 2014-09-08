@@ -21,10 +21,12 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.snks.mylection.model.Course;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.SubjectClassification;
 import com.snks.mylection.model.json.LectionJSON;
+import com.snks.mylection.service.CourseService;
 import com.snks.mylection.service.LectionService;
 import com.snks.mylection.service.SubjectClassificationService;
 import com.snks.mylection.service.SubjectService;
@@ -42,6 +44,8 @@ public class LectionController {
 	private SubjectService subjectService; 
 	@Autowired
 	private SubjectClassificationService subjectClassificationService;
+	@Autowired
+	private CourseService  courseService;
 	@RequestMapping("/addlection")
     public String add(Model model,Principal principal) {
 		List<Subject> subjects= subjectService.findAll();
@@ -88,6 +92,7 @@ public class LectionController {
 	   lection.getLectionDate().setAccessedDate(new Date());
 	   lectionService.update(lection);
 	   model.addAttribute("lection",lection);
+	   model.addAttribute("courses", courseService.findByUserName(principal.getName()));
 	  return "lection_read";
     }
 	
@@ -117,5 +122,18 @@ public class LectionController {
 		return lectionService.updateFromJSON(lect,id);
     }
 
+	
+	@RequestMapping("/lections/saveincourse")
+    public @ResponseBody int saveInCourse(Principal principal,@RequestParam int lectionId, @RequestParam int courseId) {
+		Lection lection = lectionService.findByIdWithCourses(lectionId);
+		Course course = courseService.findByIdWithLections(courseId);
+		List<Lection> lections = course.getLections();
+		lections.add(lection);
+		List<Course> courses = lection.getCourses();
+		courses.add(course);
+		lectionService.update(lection);
+		courseService.update(course);
+		return courseId;
+    }
 	
 }

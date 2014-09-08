@@ -95,5 +95,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/classifications.jsp" />
 		<put-attribute name="current" value="classifications" />
 	</definition>
+	
+	<definition name="search_lections" extends="common">	
+		<put-attribute name="title" value="Search for lections" />
+		<put-attribute name="body" value="/WEB-INF/views/search_lections.jsp" />
+		<put-attribute name="current" value="search_lections" />
+	</definition>
+	
+	<definition name="search_courses" extends="common">	
+		<put-attribute name="title" value="Search for courses" />
+		<put-attribute name="body" value="/WEB-INF/views/search_courses.jsp" />
+		<put-attribute name="current" value="search_courses" />
+	</definition>
 	 	 
 </tiles-definitions>

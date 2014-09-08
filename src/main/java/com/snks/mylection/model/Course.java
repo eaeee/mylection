@@ -3,23 +3,29 @@ package com.snks.mylection.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.FetchProfile;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
 @Table(name="COURSES")
+@FetchProfile(name = "course-with-lections", fetchOverrides = {
+		   @FetchProfile.FetchOverride(entity = Course.class, association = "lections", mode = FetchMode.JOIN)
+		})
 public class Course {
 	
 	@Id @GeneratedValue
 	private int courseId;
 	
-	@ManyToMany(mappedBy="courses")
+	@ManyToMany(mappedBy="courses",cascade=CascadeType.ALL)
 	private List<Lection> lections = new ArrayList<Lection>();
 	
 	@ManyToOne

@@ -122,4 +122,10 @@ public class LectionServiceImpl implements LectionService {
 		return lectionDao.findLast();
 	}
 
+
+	@Override
+	public Lection findByIdWithCourses(int lectionId) {
+		return lectionDao.findByIdWithCourses(lectionId);
+	}
+
 }

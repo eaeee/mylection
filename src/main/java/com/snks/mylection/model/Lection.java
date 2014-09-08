@@ -3,6 +3,7 @@ package com.snks.mylection.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
+
 
 @Entity
 @Table(name="lections")
+@FetchProfile(name = "lection-with-courses", fetchOverrides = {
+		   @FetchProfile.FetchOverride(entity = Lection.class, association = "courses", mode = FetchMode.JOIN)
+		})
 public class Lection {
 	
 	@Id @GeneratedValue
@@ -35,9 +42,9 @@ public class Lection {
 	
 	private int lastModifiedUserId;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="LECTIONS_AND_COURSES",
-			joinColumns=@JoinColumn(name="LECTIO_ID"),
+			joinColumns=@JoinColumn(name="LECTION_ID"),
 			inverseJoinColumns=@JoinColumn(name="COURSE_ID"))
 	private List<Course> courses = new ArrayList<Course>();
 	

@@ -5,9 +5,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
-
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -79,6 +78,13 @@ public class LectionDAOImpl implements LectionDAO{
 		criteria.setMaxResults(10);
 		criteria.addOrder(Order.desc("lectionDate.modifiedDate"));
 		return (List<Lection>) criteria.list();
+	}
+
+	@Override
+	public Lection findByIdWithCourses(int lectionId) {
+		Session session = sessionFactory.getCurrentSession();
+		session.enableFetchProfile("lection-with-courses");
+		return (Lection) session.get(Lection.class,lectionId);
 	}
 	
 

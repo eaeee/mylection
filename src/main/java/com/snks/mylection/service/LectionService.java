@@ -25,4 +25,6 @@ public interface LectionService {
 
 	List<Lection> findLast();
 
+	Lection findByIdWithCourses(int lectionId);
+
 }

@@ -10,4 +10,12 @@ public interface CourseService {
 
 	List<Course> findAll();
 
+	List<Course> findByUserName(String userName);
+
+	Course findById(int courseId);
+
+	void update(Course course);
+
+	Course findByIdWithLections(int courseId);
+
 }
