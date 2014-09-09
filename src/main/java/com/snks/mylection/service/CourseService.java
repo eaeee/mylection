@@ -18,4 +18,6 @@ public interface CourseService {
 
 	Course findByIdWithLections(int courseId);
 
+	List<Course> search(String word);
+
 }

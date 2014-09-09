@@ -128,4 +128,11 @@ public class LectionServiceImpl implements LectionService {
 		return lectionDao.findByIdWithCourses(lectionId);
 	}
 
+
+	@Override
+	public List<Lection> search(String word, String wordInBody, Subject subject) {
+		// TODO Auto-generated method stub
+		return lectionDao.search(word,wordInBody,subject);
+	}
+
 }

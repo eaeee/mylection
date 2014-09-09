@@ -3,6 +3,7 @@ package com.snks.mylection.service;
 import java.util.List;
 
 import com.snks.mylection.model.Lection;
+import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.json.LectionJSON;
 
 public interface LectionService {
@@ -26,5 +27,7 @@ public interface LectionService {
 	List<Lection> findLast();
 
 	Lection findByIdWithCourses(int lectionId);
+
+	List<Lection> search(String word, String wordInBody, Subject subject);
 
 }

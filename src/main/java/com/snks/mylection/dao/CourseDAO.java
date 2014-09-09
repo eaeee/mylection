@@ -19,4 +19,6 @@ public interface CourseDAO {
 
 	Course findByIdWithLections(int courseId);
 
+	List<Course> search(String word);
+
 }

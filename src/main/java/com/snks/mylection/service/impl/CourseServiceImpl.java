@@ -59,4 +59,9 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.findByIdWithLections(courseId);
 	}
 
+	@Override
+	public List<Course> search(String word) {
+		return courseDao.search(word);
+	}
+
 }

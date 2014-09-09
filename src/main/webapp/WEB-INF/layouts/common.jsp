@@ -75,8 +75,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=ic_search%> Search<span class="caret"></span></a>
                 <ul class="dropdown-menu ${current == 'users'||'all_lections'||'subjects' ? 'active':''}" role="menu">
-					<li class="${current == 'search_lections' ? 'active':''}"><a href='<spring:url value="/search_lections"/>'> <%=ic_search%> for courses</a></li>
-	              	<li class="${current == 'search_courses' ? 'active':''}"><a href='<spring:url value="/search_courses"/>'><%=ic_search%> for lections</a></li>
+					<li class="${current == 'search_lections' ? 'active':''}"><a href='<spring:url value="/search_lections"/>'> <%=ic_search%> for lections</a></li>
+	              	<li class="${current == 'search_courses' ? 'active':''}"><a href='<spring:url value="/search_courses"/>'><%=ic_search%> for courses</a></li>
                 </ul>
               </li>
               

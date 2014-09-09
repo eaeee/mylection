@@ -3,6 +3,7 @@ package com.snks.mylection.dao;
 import java.util.List;
 
 import com.snks.mylection.model.Lection;
+import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.User;
 
 public interface LectionDAO {
@@ -25,5 +26,7 @@ public interface LectionDAO {
 	List<Lection> findLast();
 
 	Lection findByIdWithCourses(int lectionId);
+
+	List<Lection> search(String word, String wordInBody, Subject subject);
 
 }

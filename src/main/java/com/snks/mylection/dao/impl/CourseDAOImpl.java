@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,16 @@ public class CourseDAOImpl implements CourseDAO{
 		Session session = sessionFactory.getCurrentSession();
 		session.enableFetchProfile("course-with-lections");
 		return (Course) session.get(Course.class,courseId);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> search(String word) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Course.class);
+		if (!word.equals("")) {
+			criteria.add(Restrictions.like("courseName", word, MatchMode.ANYWHERE));
+		}
+		return (List<Course>)criteria.list();
 	}
 
 
