@@ -64,4 +64,9 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.search(word);
 	}
 
+	@Override
+	public Course findByIdWithFollowers(int courseId) {
+		return courseDao.findByIdWithFollowers(courseId);
+	}
+
 }

@@ -21,4 +21,6 @@ public interface CourseDAO {
 
 	List<Course> search(String word);
 
+	Course findByIdWithFollowers(int courseId);
+
 }

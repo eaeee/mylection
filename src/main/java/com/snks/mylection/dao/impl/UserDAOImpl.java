@@ -51,4 +51,19 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 
+	@Override
+	public void update(User user) {
+		sessionFactory.getCurrentSession().update(user);
+	}
+
+	@Override
+	public User findByNameWithSubs(String name) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("userName", name));
+		session.enableFetchProfile("user-with-subs");
+		return (User) criteria.uniqueResult();
+	}
+
+
 }

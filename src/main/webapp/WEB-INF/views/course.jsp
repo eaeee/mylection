@@ -10,7 +10,14 @@
 <h1>Курс:${course.getCourseName()}</h1>
 <h2>Количество лекций в курсе: ${lections.size()}</h2>
 <h2>Автор: ${course.getCourseAuthor().getUserName()}</h2>
- <button class="btn btn-primary" data-target="#courseFollow" >Подписаться</button>
+<c:if test="${!subscribed}">
+	Вы еще не подписаны на этот курс.<br>
+	<button class="btn btn-primary" id="courseFollow" >Подписаться</button>
+</c:if> 
+<c:if test="${subscribed}">
+	Вы уже  подписаны на этот курс.<br>
+	<button class="btn btn-primary" id="courseUnfollow" >Отписаться</button>
+</c:if> 
 <c:if test="${lections !='null'}" >
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
@@ -57,5 +64,6 @@
 </c:if> 
 <script>
 var followURL = '<spring:url value="/courses/follow"/>'+'?courseId=${course.getCourseId()}';
+var unfollowURL = '<spring:url value="/courses/unfollow"/>'+'?courseId=${course.getCourseId()}';
 </script>
 <script src='<spring:url value="/resources/js/course.js"/>'></script>

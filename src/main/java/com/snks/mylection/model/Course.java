@@ -13,13 +13,19 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.FetchProfile;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfiles;
 
 
 @Entity
 @Table(name="COURSES")
-@FetchProfile(name = "course-with-lections", fetchOverrides = {
-		   @FetchProfile.FetchOverride(entity = Course.class, association = "lections", mode = FetchMode.JOIN)
-		})
+@FetchProfiles({
+	@FetchProfile(name = "course-with-lections", fetchOverrides = {
+			   @FetchProfile.FetchOverride(entity = Course.class, association = "lections", mode = FetchMode.JOIN)
+			}),
+	@FetchProfile(name = "course-with-followers", fetchOverrides = {
+			   @FetchProfile.FetchOverride(entity = Course.class, association = "followers", mode = FetchMode.JOIN)
+			})
+})
 public class Course {
 	
 	@Id @GeneratedValue
@@ -31,7 +37,7 @@ public class Course {
 	@ManyToOne
 	private User courseAuthor;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="subCourses",cascade=CascadeType.ALL)
 	private List<User> followers =  new ArrayList<User>();
 	
 	private String courseName;

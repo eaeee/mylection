@@ -20,4 +20,6 @@ public interface CourseService {
 
 	List<Course> search(String word);
 
+	Course findByIdWithFollowers(int courseId);
+
 }

@@ -3,6 +3,10 @@ $("#courseFollow").click(function() {
 	  followCourse();
 });
 
+$("#courseUnfollow").click(function() {
+	  unfollowCourse();
+});
+
 function followCourse() {
     $.ajax({
         type: 'POST',
@@ -13,3 +17,18 @@ function followCourse() {
     });
 	
 }
+
+function unfollowCourse() {
+    $.ajax({
+        type: 'POST',
+        url: unfollowURL,
+        success: function (data, textStatus) { 
+			alert("Вы успшешно отписаны от курса " +data);
+        } 
+    });
+	
+}
+
+
+
+

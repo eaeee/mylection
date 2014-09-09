@@ -11,5 +11,7 @@ public interface UserDAO {
 	User findById(int id);
 	void save(User user);
 	void delete(int id);
+	void update(User user);
+	User findByNameWithSubs(String name);
 
 }

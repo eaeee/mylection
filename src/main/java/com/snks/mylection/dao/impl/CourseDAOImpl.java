@@ -67,5 +67,12 @@ public class CourseDAOImpl implements CourseDAO{
 		return (List<Course>)criteria.list();
 	}
 
+	@Override
+	public Course findByIdWithFollowers(int courseId) {
+		Session session = sessionFactory.getCurrentSession();
+		session.enableFetchProfile("course-with-followers");
+		return (Course) session.get(Course.class,courseId);
+	}
+
 
 }

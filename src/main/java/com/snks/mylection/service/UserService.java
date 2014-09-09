@@ -14,5 +14,7 @@ public interface UserService {
 	void delete(int id);
 	User findByNameWithLections(String userName);
 	User findByIdWithLections(int id);
+	void update(User user);
+	User findByNameWithSubs(String userName);
 
 }

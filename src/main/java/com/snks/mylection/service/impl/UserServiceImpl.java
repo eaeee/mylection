@@ -103,4 +103,17 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+
+	@Override
+	public void update(User user) {
+		userDAO.update(user);
+		
+	}
+
+
+	@Override
+	public User findByNameWithSubs(String userName) {
+		return userDAO.findByNameWithSubs(userName);
+	}
+
 }

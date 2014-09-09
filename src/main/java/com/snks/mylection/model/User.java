@@ -3,6 +3,7 @@ package com.snks.mylection.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,11 +15,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
+
 import com.snks.mylection.annotation.UniqueUserName;
 
 
 @Entity
 @Table(name="USERS")
+@FetchProfile(name = "user-with-subs", fetchOverrides = {
+		   @FetchProfile.FetchOverride(entity = User.class, association = "subCourses", mode = FetchMode.JOIN)
+		})
 public class User {
 	@Id @GeneratedValue
 	private int userId;
@@ -36,6 +43,12 @@ public class User {
 			joinColumns=@JoinColumn(name="USER_ID"),
 			inverseJoinColumns=@JoinColumn(name="ROLE_ID"))
 	private List<Role> roles = new ArrayList<Role>();
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="USERS_AND_SUBCOURSES",
+				joinColumns=@JoinColumn(name="USER_ID"),
+				inverseJoinColumns=@JoinColumn(name="COURSE_ID"))
+	private List<Course> subCourses = new ArrayList<Course>();
 	
 	
 	
@@ -73,5 +86,12 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public List<Course> getSubCourses() {
+		return subCourses;
+	}
+	public void setSubCourses(List<Course> subCourses) {
+		this.subCourses = subCourses;
+	}
 
+	
 }
