@@ -25,6 +25,7 @@ import com.snks.mylection.model.Course;
 import com.snks.mylection.model.Lection;
 import com.snks.mylection.model.Subject;
 import com.snks.mylection.model.SubjectClassification;
+import com.snks.mylection.model.User;
 import com.snks.mylection.model.json.LectionJSON;
 import com.snks.mylection.service.CourseService;
 import com.snks.mylection.service.LectionService;
@@ -46,6 +47,8 @@ public class LectionController {
 	private SubjectClassificationService subjectClassificationService;
 	@Autowired
 	private CourseService  courseService;
+	@Autowired
+	private UserService userService;
 	@RequestMapping("/addlection")
     public String add(Model model,Principal principal) {
 		List<Subject> subjects= subjectService.findAll();
@@ -125,14 +128,19 @@ public class LectionController {
 	
 	@RequestMapping("/lections/saveincourse")
     public @ResponseBody int saveInCourse(Principal principal,@RequestParam int lectionId, @RequestParam int courseId) {
+		String userName = principal.getName();
+		User user = userService.findByName(userName);
 		Lection lection = lectionService.findByIdWithCourses(lectionId);
 		Course course = courseService.findByIdWithLections(courseId);
 		List<Lection> lections = course.getLections();
 		lections.add(lection);
 		List<Course> courses = lection.getCourses();
 		courses.add(course);
-		lectionService.update(lection);
-		courseService.update(course);
+		if (course.getCourseAuthor()==user) {
+			lectionService.update(lection);
+			courseService.update(course);
+			return courseId;
+		}
 		return courseId;
     }
 	

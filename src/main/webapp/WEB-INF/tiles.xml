@@ -107,5 +107,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/search_courses.jsp" />
 		<put-attribute name="current" value="search_courses" />
 	</definition>
+	
+	<definition name="course" extends="common">	
+		<put-attribute name="title" value="Course" />
+		<put-attribute name="body" value="/WEB-INF/views/course.jsp" />
+		<put-attribute name="current" value="course" />
+	</definition>
+	
 	 	 
 </tiles-definitions>

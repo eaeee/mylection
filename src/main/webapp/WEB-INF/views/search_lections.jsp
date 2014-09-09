@@ -9,7 +9,7 @@
 <br>
 <br>
 
-Заполните форму поиска
+<h2>Заполните форму поиска</h2>
 <form class="form-horisontal" method="post" action='<spring:url value="/searchLectionForm"/>'>
 	
 	<div class="form-group">
@@ -57,8 +57,12 @@
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>
-				<th> lection ID</th> 
-				<th> lection name</th>
+				<th> ID лекции</th> 
+				<th> Название</th>
+				<th> Предмет</th>
+				<th> Классификация</th>
+				<th> Дата создания</th>
+				<th> Автор</th>
 			</tr>
 		</thead>
 		
@@ -68,13 +72,28 @@
 				  	<td>
 						${lection.lectionId}
 					</td> 
+				  	<td>
+						<a href="<spring:url value="/lections/${lection.lectionId}"/>">  ${lection.lectionName}     </a>
+					</td> 
+				  	
+				  	<td>
+						${lection.getSubject().getSubjectName()}
+					</td> 
 					<td>
-						<a href="<spring:url value="/lections/${lection.lectionId}"/>"> 
-							<c:out value="${lection.lectionName}"/>
-						</a> 
-					</td>			
+						${lection.getSubject().getClassification().getSubjectClassificationName()}
+					</td> 
+				  	
+				  	<td>
+						${lection.lectionDate.getCreationDate()}
+					</td>	
+				  	<td>
+						${lection.getAuthor().getUserName()}
+					</td>				
+			
+				
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+
 </c:if> 
