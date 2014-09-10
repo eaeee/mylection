@@ -9,20 +9,20 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
 import com.fasterxml.jackson.core.JsonFactory;
 
 
 @Configuration
-@PropertySource({ "classpath:hibernate-mysql.properties" })
 @EnableWebMvc
 @ComponentScan({"com.snks.mylection.config", 
 				"com.snks.mylection.controllers",
 				"com.snks.mylection.dao",
 				"com.snks.mylection.service"
 			   })
+@PropertySource({ "classpath:${spring.profiles.active}.properties" })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -59,7 +59,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	JsonFactory getJsonFactory(){
 		return new JsonFactory();
 	}
-	
-	
 
 }

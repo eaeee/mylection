@@ -1,14 +1,15 @@
 package com.snks.mylection.config;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
-import javax.sql.DataSource;
-
-import org.hibernate.SessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -20,18 +21,22 @@ public class HibernateConfig {
  
    @Autowired
    private Environment env;
+   
+   @Autowired
+   private BasicDataSource datasourse;
  
    @Bean
    public LocalSessionFactoryBean sessionFactory() {
       LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-      sessionFactory.setDataSource(restDataSource());
+      sessionFactory.setDataSource(datasourse);
       sessionFactory.setPackagesToScan(new String[] { "com.snks.mylection.model" });
       sessionFactory.setHibernateProperties(hibernateProperties());
       return sessionFactory;
    }
  
+   @Profile("dev")
    @Bean
-   public DataSource restDataSource() {
+   public BasicDataSource restDataSource() {
 	  BasicDataSource dataSource = new BasicDataSource();
       dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
       dataSource.setUrl(env.getProperty("jdbc.url"));
@@ -39,6 +44,23 @@ public class HibernateConfig {
       dataSource.setPassword(env.getProperty("jdbc.pass"));
  
       return dataSource;
+   }
+   
+   @Profile("prod")
+   @Bean
+   public BasicDataSource dataSource() throws URISyntaxException {
+       URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+       String username = dbUri.getUserInfo().split(":")[0];
+       String password = dbUri.getUserInfo().split(":")[1];
+       String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+       BasicDataSource basicDataSource = new BasicDataSource();
+       basicDataSource.setUrl(dbUrl);
+       basicDataSource.setUsername(username);
+       basicDataSource.setPassword(password);
+
+       return basicDataSource;
    }
  
    @Bean

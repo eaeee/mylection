@@ -43,6 +43,12 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     public void onStartup(ServletContext servletContext)
     		throws ServletException {
     	servletContext.setInitParameter("defaultHtmlEscape", "true");
+	   String activeProfile = System.getProperty("spring.profiles.active");
+	    if (activeProfile == null) {
+	      activeProfile = "prod";
+	    }
+    	servletContext.setInitParameter("spring.profiles.active", activeProfile);
     	super.onStartup(servletContext);
     }
+   
 }
